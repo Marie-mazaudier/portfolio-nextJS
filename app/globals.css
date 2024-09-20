@@ -2,10 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Grotesk-Light';
+  font-style: normal;
+  font-weight: 300; /* Barlow-Light */
+  src: url('/fonts/grotesk/SpaceGrotesk-Light.woff2') format('woff2'),
+    url('/fonts/grotesk/SpaceGrotesk-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'Grotesk-Medium';
+  font-style: normal;
+  font-weight: 500; /* Barlow-Medium */
+  src: url('/fonts/grotesk/SpaceGrotesk-Medium.woff2') format('woff2'),
+    url('/fonts/grotesk/SpaceGrotesk-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Grotesk';
+  font-style: normal;
+  font-weight: 400; /* Barlow-Regular */
+  src: url('/fonts/grotesk/SpaceGrotesk-Regular.woff2') format('woff2'),
+    url('/fonts/grotesk/SpaceGrotesk-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Grotesk-SemiBold';
+  font-style: normal;
+  font-weight: 600; /* Barlow-SemiBold */
+  src: url('/fonts/grotesk/SpaceGrotesk-SemiBold.woff2') format('woff2'),
+    url('/fonts/grotesk/SpaceGrotesk-SemiBold.woff') format('woff');
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary-color: #063dcc;
+  --secondary-color: #fffeee;
+  --spacing-large: 20px;
+  --regular-font: 'Grotesk';
+  --medium-font: 'Grotesk-Medium';
+  --semi-bold-font: 'Grotesk-SemiBold';
+  --thin-font: 'Grotesk-Light';
+  --text-size: 0.95rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,4 +69,17 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.stroke-width-1 {
+  stroke-width: 1;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Pour s'assurer que les marges ne sont pas ajoutées à la largeur */
 }
