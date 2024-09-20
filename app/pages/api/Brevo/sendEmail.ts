@@ -1,6 +1,6 @@
 // pages/api/sendEmail.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { verifyCsrfToken } from '@/app/lib/utils/csrf';
+import { verifyCsrfToken } from '../../../lib/utils/csrf';
 import validator from 'validator';
 import sanitizeHtml from 'sanitize-html';
 
