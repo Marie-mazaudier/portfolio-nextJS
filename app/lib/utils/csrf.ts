@@ -19,3 +19,9 @@ export function verifyCsrfToken(req: NextApiRequest): void {
     throw new Error('Invalid CSRF token');
   }
 }
+const csrfUtils = {
+  generateCsrfToken,
+  verifyCsrfToken,
+};
+
+export default csrfUtils;

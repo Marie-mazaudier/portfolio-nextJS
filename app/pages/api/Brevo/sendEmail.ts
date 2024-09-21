@@ -1,5 +1,6 @@
 // pages/api/sendEmail.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { verifyCsrfToken } from '@/app/lib/utils/csrf';
 import validator from 'validator';
 import sanitizeHtml from 'sanitize-html';
 
@@ -12,7 +13,7 @@ export default async function handler(
   }
 
   try {
-    // Verify CSRF token
+    verifyCsrfToken(req);
   } catch (error) {
     return res.status(403).json({ error: 'Invalid CSRF token' });
   }
