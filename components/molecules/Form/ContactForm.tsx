@@ -3,7 +3,7 @@
 import React from "react";
 import FormInput from "@/components/atoms/form/FormInput";
 import FormTextArea from "@/components/atoms/form/FormTextArea";
-import { FormLoader } from "@/components/atoms/loaders/FormLoader";
+//import { FormLoader } from "@/components/atoms/loaders/FormLoader";
 import { useSendEmailBrevo } from "@/app/lib/brevo/sendEmail";
 import { useForm } from "react-hook-form";
 import { useCsrf } from "@/app/lib/utils/CsrfContext"; // Import du contexte CSRF
@@ -162,7 +162,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
               {isSubmitting ? (
                 <>
                   Chargement...
-                  <FormLoader color="text-white" />
+                  {/*                 <FormLoader color="text-white" />*/}
                 </>
               ) : (
                 <>
