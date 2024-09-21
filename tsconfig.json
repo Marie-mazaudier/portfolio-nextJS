@@ -20,7 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@utils/*": ["./lib/utils/*"]
+      "@lib/*": ["./lib/*"] // Added this line for relative path importation
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
