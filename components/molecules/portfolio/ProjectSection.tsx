@@ -1,8 +1,9 @@
-"use client"; // Ajoute ceci en haut du fichier
-import ProjectCard from "./ProjectCard";
-import useVerticalScroll from "@/app/lib/GSAP/verticalScroll";
-import React, { useRef } from "react";
+"use client"; // Utilisation côté client
 
+import ProjectCard from "./ProjectCard";
+import React from "react";
+
+// Définition de l'interface ProjectData
 interface ProjectData {
   title: string;
   description: string;
@@ -10,26 +11,26 @@ interface ProjectData {
   imageSrc: string;
   imageAlt: string;
   linkText: string;
+  width: number;
+  height: number;
 }
 
+// Interface des props pour ProjectSection
 interface ProjectSectionProps {
-  projects: ProjectData[];
-  primaryColor: string;
+  projects: ProjectData[]; // Tableau des données de projet
 }
 
-const ProjectSection: React.FC<ProjectSectionProps> = ({
-  projects,
-  primaryColor,
-}) => {
+const ProjectSection: React.FC<ProjectSectionProps> = ({ projects }) => {
   return (
     <section className="box-border flex relative flex-col shrink-0 mt-0">
-      <div className="flex  gap-0 md:gap-40 max-md:flex-col">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-x-20">
         {projects.map((project, index) => (
           <div
             key={index}
-            className={`flex flex-col w-6/12 max-md:w-full ${
-              index === 1 ? "mt-0 md:mt-40" : ""
+            className={`flex flex-col w-full ${
+              index === 1 ? "mt-0 md:mt-20" : ""
             } max-md:ml-0`}>
+            {/* Utilisation du composant ProjectCard avec des données dynamiques */}
             <ProjectCard
               title={project.title}
               description={project.description}
@@ -37,7 +38,8 @@ const ProjectSection: React.FC<ProjectSectionProps> = ({
               imageSrc={project.imageSrc}
               imageAlt={project.imageAlt}
               linkText={project.linkText}
-              primaryColor={primaryColor}
+              imageWidth={project.width}
+              imageHeight={project.height}
             />
           </div>
         ))}

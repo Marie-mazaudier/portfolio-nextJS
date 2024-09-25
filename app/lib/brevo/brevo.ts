@@ -1,3 +1,5 @@
+'use client'; // Ce fichier est un Client Component
+
 import axios, { AxiosError } from 'axios';
 
 export const useSendEmailBrevo = () => {

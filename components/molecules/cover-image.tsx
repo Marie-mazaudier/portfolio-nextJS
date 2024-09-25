@@ -1,6 +1,8 @@
-import BuilderImage from '../atoms/builder-image';
-import Link from 'next/link';
-import cn from 'classnames';
+"use client"; // Ce fichier est un Client Component
+
+import BuilderImage from "../atoms/builder-image";
+import Link from "next/link";
+import cn from "classnames";
 
 interface CoverImageProps {
   title: string;
@@ -14,8 +16,8 @@ export default function CoverImage({ title, url, slug }: CoverImageProps) {
       width={2000}
       height={1000}
       alt={`Cover Image for ${title}`}
-      className={cn('shadow-small', {
-        'hover:shadow-medium transition-shadow duration-200': slug,
+      className={cn("shadow-small", {
+        "hover:shadow-medium transition-shadow duration-200": slug,
       })}
       src={url}
     />

@@ -1,3 +1,5 @@
+'use client'; // Ce fichier est un Client Component
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { RefObject, useEffect } from 'react';

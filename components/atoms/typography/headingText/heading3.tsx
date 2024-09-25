@@ -13,7 +13,7 @@ const h3Style = cva([""], {
       xs: ["text-xs"],
       sm: ["text-xs sm:text-sm"],
       md: ["text-md leading-text"],
-      lg: ["text-med md:text-lg"],
+      lg: ["text-med md:text-med"],
       xl: ["text-xl"],
       xxl: ["text-xxl"],
     },

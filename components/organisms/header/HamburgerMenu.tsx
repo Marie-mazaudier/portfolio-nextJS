@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import MenuIcon from "@/assets/icons/menu.svg";
 import Close from "@/assets/icons/close.svg";

@@ -1,3 +1,5 @@
+"use client"; // Ce fichier est un Client Component
+
 import React from "react";
 
 interface NavItemProps {

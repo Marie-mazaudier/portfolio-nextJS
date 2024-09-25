@@ -1,76 +1,68 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import ProjectSection from "@/components/molecules/portfolio/ProjectSection";
 import { Heading2 } from "@/components/atoms/typography/headingText/Heading2";
 import Trait from "@/assets/icons/trait.svg";
 import useVerticalScroll from "@/app/lib/GSAP/verticalScroll";
-interface ThemeColors {
-  primary: string;
-  secondary: string;
+
+// Interface pour les attributs d'un projet
+interface ProjectAttributes {
+  title: string;
+  description: string;
+  stacks: { id: number; text: string }[];
+  button: { text: string; link: string };
+  featured_image: {
+    data: {
+      attributes: {
+        url: string;
+        width: number;
+        height: number;
+        alternativeText: string | null;
+      };
+    };
+  };
+}
+interface PortfolioProps {
+  projects: {
+    id: string;
+    attributes: ProjectAttributes;
+  }[];
+}
+interface ProjectData {
+  title: string;
+  description: string;
+  stack: string;
+  imageSrc: string;
+  imageAlt: string;
+  linkText: string;
+  width: number;
+  height: number;
 }
 
-const Portfolio: React.FC = () => {
-  // Set random colors directly
-  const themeColors: ThemeColors = {
-    primary: "var(--primary-color, #3498db)", // A shade of blue
-    secondary: "var(--secondary-color, #FFFEEF)", // A shade of green
-  };
+const Portfolio: React.FC<PortfolioProps> = ({ projects }) => {
   const myElementRef = useRef<HTMLDivElement>(null);
-
-  // Appel direct du hook sans avoir à gérer l'effet
+  // Animation de défilement vertical
   useVerticalScroll(myElementRef, {
-    direction: "diagonal", // Animation verticale (par défaut) | horizontale | diagonale
-    //reverse: false, // L'animation se fait de bas en haut (par défaut)
-    diagonalDirection: "top-right-to-bottom-left", // Animation diagonale top-right-to-bottom-left | bottom-left-to-top-right
+    direction: "diagonal",
+    diagonalDirection: "top-right-to-bottom-left",
   });
-  const projects = [
-    {
-      title: "L'Empreinte",
-      description:
-        "Développement & web design de la V1 et V2 du site pour la marque Ecocertifié Peftrust (anciennement l'Empreinte).",
-      stack: "Stack : Oxygen, Woocommerce",
-      imageSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2Fb7c2b5e165594b20b03520696ff96e46%2F4415b856ebb7414da501d26c4b573932",
-      imageAlt: "L'Empreinte project screenshot",
-      linkText: "Voir le site web",
-    },
-    {
-      title: "Francine Joaillerie",
-      description:
-        "Collaboration avec l'agence iViera. Développement web, optimisations des performances.",
-      stack: "Stack : Elementor, Woocommerce, API",
-      imageSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2Fb7c2b5e165594b20b03520696ff96e46%2Ffee5f7954d8243db909d00116430f771",
-      imageAlt: "Francine Joaillerie project screenshot",
-      linkText: "Voir le site web",
-    },
-    {
-      title: "L'Empreinte",
-      description:
-        "Développement & web design de la V1 et V2 du site pour la marque Ecocertifié Peftrust (anciennement l'Empreinte).",
-      stack: "Stack : Oxygen, Woocommerce",
-      imageSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2Fb7c2b5e165594b20b03520696ff96e46%2F4415b856ebb7414da501d26c4b573932",
-      imageAlt: "L'Empreinte project screenshot",
-      linkText: "Voir le site web",
-    },
-    {
-      title: "Francine Joaillerie",
-      description:
-        "Collaboration avec l'agence iViera. Développement web, optimisations des performances.",
-      stack: "Stack : Elementor, Woocommerce, API",
-      imageSrc:
-        "https://cdn.builder.io/api/v1/image/assets%2Fb7c2b5e165594b20b03520696ff96e46%2Ffee5f7954d8243db909d00116430f771",
-      imageAlt: "Francine Joaillerie project screenshot",
-      linkText: "Voir le site web",
-    },
-  ];
+
+  const formattedProjects: ProjectData[] = projects.map((project) => ({
+    title: project.attributes.title,
+    description: project.attributes.description,
+    stack: project.attributes.stacks.map((stack) => stack.text).join(", "),
+    imageSrc: project.attributes.featured_image.data.attributes.url,
+    imageAlt:
+      project.attributes.featured_image.data.attributes.alternativeText ||
+      "Image du projet",
+    linkText: project.attributes.button.text,
+    width: project.attributes.featured_image.data.attributes.width,
+    height: project.attributes.featured_image.data.attributes.height,
+  }));
 
   return (
-    <section
-      className="box-border flex flex-col  w-full shrink-0 p-5 min-h-[100px]"
-      style={{ backgroundColor: themeColors.secondary }}>
+    <section className="box-border flex flex-col  w-full shrink-0 p-5 min-h-[100px] bg-secondary ">
       <div
         ref={myElementRef}
         className="box-border flex relative flex-row mr-5 h-auto justify-end items-center lg:mt-5 w-full ml-auto md:w-[80%]">
@@ -83,7 +75,7 @@ const Portfolio: React.FC = () => {
         <Trait
           stroke-width="1"
           width="250px"
-          className="text-primary mx-auto mb-[-10px] md:mb-[-20px] " // Applique la couleur primary au SVG entier via currentColor
+          className="text-primary mx-auto mb-[-10px] md:mb-[-20px]" // Applique la couleur primary au SVG entier via currentColor
         />
         <Heading2
           className="text-primary pl-5 md:pl-0  md:pr-1"
@@ -93,17 +85,11 @@ const Portfolio: React.FC = () => {
         </Heading2>
       </div>
       <div className="box-border flex relative flex-row justify-center w-full">
-        <div className="box-border flex relative flex-col  md:py-5  w-full md:max-w-[1250px] min-h-[100px]">
-          <div
-            className="box-border flex relative flex-col shrink-0 md:pt-10 md:pb-8 h-auto"
-            style={{ backgroundColor: themeColors.secondary }}>
+        <div className="box-border flex relative flex-col md:py-5 w-full md:max-w-[1580px] min-h-[100px]">
+          <div className="box-border flex relative flex-col shrink-0 md:pt-10 md:pb-8 h-auto bg-secondary ">
+            {/* Envoi des projets convertis à ProjectSection */}
             <ProjectSection
-              projects={projects.slice(0, 2)}
-              primaryColor={themeColors.primary}
-            />
-            <ProjectSection
-              projects={projects.slice(2)}
-              primaryColor={themeColors.primary}
+              projects={formattedProjects} // Les 2 premiers projets
             />
           </div>
         </div>

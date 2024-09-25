@@ -1,3 +1,5 @@
+'use client'; // Spécifie que ce fichier est un Client Component
+
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -6,7 +8,7 @@ const CsrfContext = createContext<{ csrfToken: string | null }>({
   csrfToken: null,
 });
 
-// Fournisseur de contexte pour encapsuler l'application
+// Fournisseur de contexte pour encapsuler l'application (uniquement côté client)
 export const CsrfProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -16,7 +18,7 @@ export const CsrfProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const fetchCsrfToken = async () => {
       try {
-        const response = await axios.get('/api/csrf-token'); // Supposons que cette route te retourne le token
+        const response = await axios.get('/api/csrf-token'); // Supposons que cette route retourne le token
         setCsrfToken(response.data.csrfToken);
       } catch (error) {
         console.error('Failed to fetch CSRF token:', error);
