@@ -3,10 +3,8 @@
 import BioSection from "@/components/organisms/Bio/BioSection";
 import Portfolio from "@/components/organisms/Portfolio/Portfolio";
 import Contact from "@/components/organisms/Contact/Contact";
-import BackgroundSection from "@/components/atoms/parallax/background-parralax";
 import { Stacks } from "../organisms/Stacks/Stacks";
 import { HomePageProps } from "@/app/lib/graphQL/types/homePageProps";
-import { text } from "body-parser";
 
 const HomePage: React.FC<HomePageProps> = ({
   homeData,
