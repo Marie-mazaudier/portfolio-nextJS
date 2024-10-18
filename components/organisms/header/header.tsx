@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({ logo, globalData, menu }) => {
             {headerData.siteName}
           </a>
         </div>
-        <nav className="flex justify-center flex-col w-6/12 max-lg:hidden lg:w-[55%]  max-sm:hidden">
+        <nav className="flex justify-center flex-col w-6/12 max-lg:hidden lg:w-[45%]  max-sm:hidden">
           {/* NavItem gère désormais le mapping et l'état actif */}
           <NavItem gitHubUrl={headerData.gitHubLink} navItems={navItems} />
         </nav>
