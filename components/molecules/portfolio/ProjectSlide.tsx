@@ -38,7 +38,7 @@ const ProjectSlide: React.FC<SlideData> = ({
       <div className="w-full lg:w-1/2 text-left">
         <Heading3 className="text-primary lg:text-xl ">{title}</Heading3>
         <RichText
-          className="text-primary mt-10 lg:mt-16 min-h-16"
+          className="text-primary mt-10 lg:mt-16 lg:min-h-16"
           content={description_project}
         />
 

@@ -50,7 +50,7 @@ const Contact: React.FC<ContactProps> = ({
         ref={elementRef}
         className="before:bg-motif-bg before:bg-[length:25%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
  before:opacity-[0.03] before:bg-[0%_0%]  bg-blend-overlay fade-in box-border bg-primary flex relative flex-col shrink-0 px-5 py-10 lg:py-20 h-auto rounded-md min-h-[auto] text-primary">
-        <div className="box-border flex relative flex-col grow shrink-0 self-stretch py-10 px-5 lg:py-20 mx-auto w-full h-auto rounded-md max-w-[1200px] min-h-[auto]">
+        <div className="box-border flex relative flex-col grow shrink-0 self-stretch py-10 px-0 lg:py-20 mx-auto w-full h-auto rounded-md max-w-[1200px] min-h-[auto]">
           <div className="box-border flex relative flex-col shrink-0  my-auto">
             <div className="box-border flex  gap-14 lg:gap-5 max-md:flex-col">
               <div className="flex flex-col lg:w-7/12 md:w-9/12 max-md:ml-0 max-md:w-full">

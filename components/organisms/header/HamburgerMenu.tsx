@@ -70,7 +70,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
             <li key={index}>
               <a
                 href={item.href}
-                className="box-border tracking-wide hover:text-accent relative shrink-0 mb-2.5 h-auto text-left cursor-pointer pointer-events-auto max-md:font-medium max-md:text-primary max-md:uppercase"
+                className="box-border tracking-wide hover:text-accent relative shrink-0 mb-2.5 h-auto text-left cursor-pointer pointer-events-auto max-md:font-regular max-md:text-primary max-md:uppercase"
                 onClick={handleCloseMenu} // Ajout de l'événement pour fermer le menu au clic
               >
                 {item.label}
