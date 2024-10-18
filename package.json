@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
@@ -22,6 +23,7 @@
     "graphql": "^16.9.0",
     "gsap": "^3.12.5",
     "next": "14.2.5",
+    "next-sitemap": "^4.2.3",
     "nookies": "^2.5.2",
     "rc-progress": "^4.0.0",
     "react": "^18",

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /dxxo08q5g/image/upload/v1729263740/marie_fond_orange_4_9161fd14fb.jpg
+Disallow: /mentions-legales
+
+Allow: /
