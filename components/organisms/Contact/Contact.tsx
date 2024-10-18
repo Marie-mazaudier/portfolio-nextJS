@@ -129,9 +129,13 @@ const Contact: React.FC<ContactProps> = ({
                     <a
                       href="https://www.codeur.com/-marie-mazaudier"
                       title="Marie-Mazaudier">
-                      <img
+                      <BuilderImage
                         src="https://api.codeur.com/widgets/badge.svg?k=CTGQrLk6lLsDOlIC"
                         title="Marie-Mazaudier — Codeur.com"
+                        alt={"badge codeur"}
+                        width={250}
+                        height={80}
+                        loading="lazy"
                       />
                     </a>
                   </div>

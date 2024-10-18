@@ -23,20 +23,17 @@ const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
 const ClientWrapper = ({ children }: ApolloClientWrapperProps) => {
   const pathname = usePathname();
-  const searchParams = useSearchParams(); // Toujours appeler le hook ici
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Gérer l'utilisation conditionnelle ici, après avoir appelé les hooks
-    if (pathname === "/") {
-      const url = `${pathname}${
-        searchParams?.toString() ? `?${searchParams.toString()}` : ""
-      }`;
+    const url = `${pathname}${
+      searchParams?.toString() ? `?${searchParams.toString()}` : ""
+    }`;
 
-      if (window.gtag) {
-        window.gtag("config", GA_TRACKING_ID, {
-          page_path: url,
-        });
-      }
+    if (window.gtag) {
+      window.gtag("config", GA_TRACKING_ID, {
+        page_path: url,
+      });
     }
   }, [pathname, searchParams]);
 
@@ -44,10 +41,12 @@ const ClientWrapper = ({ children }: ApolloClientWrapperProps) => {
     <>
       {/* Scripts Google Analytics */}
       <Script
+        defer
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
       />
       <Script
+        defer
         id="ga4-init"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{

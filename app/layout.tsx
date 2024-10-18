@@ -80,7 +80,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='fr'>
       <body className='overflow-x-hidden relative'>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={null}>
           <ClientWrapper>
             <CsrfProvider>
               <Header logo={logo} globalData={globalData} menu={menu} />

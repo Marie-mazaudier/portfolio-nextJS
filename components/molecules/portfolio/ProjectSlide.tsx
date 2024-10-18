@@ -29,6 +29,7 @@ const ProjectSlide: React.FC<SlideData> = ({
           className="rounded-lg md:h-[75vh] 2xl:h-[60vh] shadow-lg w-full object-cover"
           width={width}
           height={height}
+          loading="lazy"
         />
       </div>
       {/* Section Texte */}
