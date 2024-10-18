@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef } from "react";
+import Image from "next/image";
 import ContactForm from "@/components/molecules/Form/ContactForm";
 import { Heading2 } from "@/components/atoms/typography/headingText/Heading2";
 import Github from "@/app/assets/icons/GitHub.svg";
@@ -41,6 +42,7 @@ const Contact: React.FC<ContactProps> = ({
     { listItem: "PME & TPE" },
     { listItem: "Start-Up" },
   ];
+  const webpImageUrl = contact_photo.replace("/upload/", "/upload/f_webp/");
   return (
     <section className="relative box-border bg-secondary flex  flex-col grow shrink-0 self-stretch p-5 mx-auto w-full max-w-[1920px] min-h-[auto]">
       <div
@@ -87,10 +89,9 @@ const Contact: React.FC<ContactProps> = ({
                       width={270} // Ajuster les valeurs si nécessaire
                       height={20}
                       className="rotate box-border  object-contain overflow-hidden shrink-0 mt-auto mr-auto mb-5 w-full aspect-[1.02] max-w-[130px] min-h-[auto] min-w-[20px] object-[bottom_left]"
-                      loading="lazy"
                     />
                     <BuilderImage
-                      src={contact_photo}
+                      src={webpImageUrl}
                       alt="Contact Photo"
                       width={150} // Ajuster les valeurs si nécessaire
                       height={150}
@@ -129,12 +130,11 @@ const Contact: React.FC<ContactProps> = ({
                     <a
                       href="https://www.codeur.com/-marie-mazaudier"
                       title="Marie-Mazaudier">
-                      <BuilderImage
+                      <img
                         src="https://api.codeur.com/widgets/badge.svg?k=CTGQrLk6lLsDOlIC"
-                        title="Marie-Mazaudier — Codeur.com"
-                        alt={"badge codeur"}
-                        width={250}
-                        height={80}
+                        alt="badge codeur"
+                        width="200"
+                        height="80"
                         loading="lazy"
                       />
                     </a>

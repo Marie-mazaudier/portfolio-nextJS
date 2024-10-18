@@ -19,12 +19,14 @@ const ProjectSlide: React.FC<SlideData> = ({
   client,
 }) => {
   const [btnActive, setbtnActive] = useState(false);
+  const webpImageUrl = image.replace("/upload/", "/upload/f_webp/");
+
   return (
     <div className="!flex flex-col lg:flex-row /shadow-[-2px_-1px_6px_rgba(0,0,0,0.05)]  border-[#ff31311a] rounded-3xl items-center gap-12 lg:gap-20 mb-7 mt-14 lg:px-7 lg:py-10 lg:bg-secondary">
       {/* Section Image */}
       <div className="w-full lg:w-1/2">
         <BuilderImage
-          src={image}
+          src={webpImageUrl}
           alt={title}
           className="rounded-lg md:h-[75vh] 2xl:h-[60vh] shadow-lg w-full object-cover"
           width={width}

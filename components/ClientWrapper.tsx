@@ -41,12 +41,12 @@ const ClientWrapper = ({ children }: ApolloClientWrapperProps) => {
     <>
       {/* Scripts Google Analytics */}
       <Script
-        defer
+        async
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
       />
       <Script
-        defer
+        async
         id="ga4-init"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
