@@ -54,7 +54,7 @@ lg:before:bg-[50%_43%] before:bg-[50%_80%]  bg-blend-overlaybox-border relative 
         className="absolute right-[-165px] lg:right-[-155px] z-50 top-[25%] md:top-[30%] lg:top-[30%] "
         fill="var(--accent-color)"
       />
-      <div className="flex flex-row justify-between w-[170px] items-center -rotate-90 absolute right-[-60px] lg:right-[-20px] bottom-36">
+      <div className="z-[99] flex flex-row justify-between w-[170px] items-center -rotate-90 absolute right-[-60px] lg:right-[-20px] bottom-36">
         <hr className="box-border relative border-t-solid border-1 mx-2 border-t-1 border-primary  w-full" />
         <a
           onClick={(e) => {
