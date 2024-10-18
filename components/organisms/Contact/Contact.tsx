@@ -126,6 +126,14 @@ const Contact: React.FC<ContactProps> = ({
                       />
                       Linkedin
                     </a>
+                    <a
+                      href="https://www.codeur.com/-marie-mazaudier"
+                      title="Marie-Mazaudier">
+                      <img
+                        src="https://api.codeur.com/widgets/badge.svg?k=CTGQrLk6lLsDOlIC"
+                        title="Marie-Mazaudier — Codeur.com"
+                      />
+                    </a>
                   </div>
                 </div>
               </div>
