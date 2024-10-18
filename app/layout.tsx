@@ -76,14 +76,14 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   const globalData = settingsResponse?.siteSetting?.data?.attributes || {};
   const menu = menuResponse?.menusMenus?.data || [];
-
+  const logo = globalData.header.logo.image.data.attributes.url;
   return (
     <html lang='fr'>
       <body className='overflow-x-hidden relative'>
         <Suspense fallback={<div>Loading...</div>}>
           <ClientWrapper>
             <CsrfProvider>
-              <Header globalData={globalData} menu={menu} />
+              <Header logo={logo} globalData={globalData} menu={menu} />
               {React.isValidElement(children)
                 ? React.cloneElement(children, { globalData })
                 : children}

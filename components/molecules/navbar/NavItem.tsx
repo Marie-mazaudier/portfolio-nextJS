@@ -3,15 +3,17 @@
 import { scrollToElementById } from "@/app/lib/utils/scrollToElement";
 import React, { useMemo } from "react";
 import useActiveSection from "@/app/hooks/useActiveSection";
+import GitHub from "@/assets/icons/GitHub.svg";
 
 interface NavItemProps {
   navItems: {
     label: string;
     href: string;
   }[];
+  gitHubUrl: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ navItems }) => {
+const NavItem: React.FC<NavItemProps> = ({ navItems, gitHubUrl }) => {
   // Extraire dynamiquement les IDs des ancres à partir des href des navItems
   const sectionIds = useMemo(
     () =>
@@ -25,18 +27,16 @@ const NavItem: React.FC<NavItemProps> = ({ navItems }) => {
   const activeSection = useActiveSection(sectionIds);
 
   return (
-    <ul className="flex gap-5 max-lg:flex-col">
+    <ul className="flex justify-center items-center space-x-10 max-lg:flex-col w-full">
       {navItems.map((item, index) => (
-        <li
-          key={index}
-          className="flex flex-col w-4/12 max-md:ml-0 max-md:w-full">
+        <li key={index} className="text-center">
           <a
             href={item.href}
             onClick={(e) => {
               e.preventDefault(); // Empêche le comportement par défaut du lien
               scrollToElementById(item.href.substring(1)); // Appelle la fonction pour scroller vers l'élément
             }}
-            className={`box-border uppercase relative shrink-0 my-auto m-auto h-auto text-nav font-regular text-left transition ${
+            className={`box-border uppercase relative shrink-0 my-auto h-auto text-nav font-regular transition ${
               activeSection === item.href.substring(1)
                 ? "text-accent"
                 : "text-primary"
@@ -45,6 +45,16 @@ const NavItem: React.FC<NavItemProps> = ({ navItems }) => {
           </a>
         </li>
       ))}
+      <li className="text-center">
+        {/* Lien vers le GitHub */}
+        <a href={gitHubUrl}>
+          <GitHub
+            width="30px"
+            height="30px"
+            className="text-primary m-auto " // Applique la couleur primary au SVG entier via currentColor
+          />
+        </a>
+      </li>
     </ul>
   );
 };

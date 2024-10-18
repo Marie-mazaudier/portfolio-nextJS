@@ -69,7 +69,7 @@ lg:before:bg-[50%_43%] before:bg-[50%_80%]  bg-blend-overlaybox-border relative 
       {/*Fin*/}
       <div
         ref={headingRef}
-        className="opacity-0 fade-in pt-32 box-border flex relative flex-col justify-center grow shrink-0 self-stretch  w-full max-w-[1200px] ">
+        className="opacity-0 fade-in pt-36 box-border flex relative flex-col justify-center grow shrink-0 self-stretch  w-full max-w-[1200px] ">
         <div className="box-border flex gap-10 relative flex-col lg:flex-row shrink-0  h-auto">
           <div className="box-border flex relative flex-col shrink-0 my-auto w-full lg:w-[70%] h-full">
             <Heading1 className="text-accent flex flex-col lg:pr-20">
