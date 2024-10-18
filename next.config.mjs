@@ -1,5 +1,5 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 import BuilderDevTools from "@builder.io/dev-tools/next";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -12,7 +12,7 @@ const nextConfig = BuilderDevTools()({
       test: /\.svg$/,
       use: [
         {
-          loader: '@svgr/webpack',
+          loader: "@svgr/webpack",
           options: {
             icon: true,
           },
@@ -21,9 +21,14 @@ const nextConfig = BuilderDevTools()({
     });
 
     // Configurer l'alias @ pour pointer vers le dossier app
-    config.resolve.alias['@'] = path.resolve(__dirname, './app');
+    config.resolve.alias["@"] = path.resolve(__dirname, "./app");
 
     return config;
+  },
+
+  // Ajout de la configuration des variables d'environnement
+  env: {
+    BREVO_API_KEY: process.env.BREVO_API_KEY,
   },
 });
 

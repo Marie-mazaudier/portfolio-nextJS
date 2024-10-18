@@ -5,19 +5,19 @@ import React, { forwardRef } from "react";
 const h1Style = cva([""], {
   variants: {
     intent: {
-      normal: ["font-normal", "font-regular"],
-      medium: ["font-medium", "font-medium"],
-      semibold: ["font-semibold", "font-semibold"],
-      bold: ["font-bold", "font-semibold"],
-      fontExtrabold: ["font-extrabold", "font-semibold"],
+      normal: ["font-normal", "font-textRegular"],
+      medium: ["font-medium", "font-textMedium"],
+      semibold: ["font-semibold", "font-textSemibold"],
+      bold: ["font-bold", "font-textBold"],
+      fontExtrabold: ["font-extrabold", "font-textSemibold"],
     },
     size: {
       xs: ["text-xs"],
       sm: ["text-xs sm:text-sm"],
       md: ["text-md leading-text"],
       lg: ["text-lg sm:text-md"],
-      xl: ["text-xl"],
-      xxl: ["text-lg lg:text-xxl"],
+      xl: ["lg:text-xl text-xxl"],
+      xxl: ["text-lg  md:text-xxxl lg:text-xxl"],
     },
   },
   defaultVariants: {
@@ -34,7 +34,7 @@ export interface H1Props {
 
 // Utilisation de forwardRef pour accepter la prop ref
 export const Heading1 = forwardRef<HTMLHeadingElement, H1Props>(
-  ({ intent = "normal", size = "sm", className = "", children }, ref) => {
+  ({ intent = "semibold", size = "xxl", className = "", children }, ref) => {
     return (
       <h1 ref={ref} className={`${h1Style({ intent, size })} ${className}`}>
         {children}

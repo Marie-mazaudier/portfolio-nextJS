@@ -1,13 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'Poppins-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/poppins/Poppins-Regular.woff2') format('woff2'),
+    url('/fonts/poppins/Poppins-Regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Poppins-light';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/poppins/Poppins-Light.woff2') format('woff2'),
+    url('/fonts/poppins/Poppins-Light.woff') format('woff');
+}
 
 @font-face {
-  font-family: 'Grotesk-Light';
+  font-family: 'Poppins-bold';
   font-style: normal;
-  font-weight: 300; /* Barlow-Light */
-  src: url('/fonts/grotesk/SpaceGrotesk-Light.woff2') format('woff2'),
-    url('/fonts/grotesk/SpaceGrotesk-Light.woff') format('woff');
+  font-weight: 900;
+  src: url('/fonts/poppins/Poppins-Bold.woff2') format('woff2'),
+    url('/fonts/poppins/Poppins-Bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Poppins-medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/poppins/Poppins-Medium.woff2') format('woff2'),
+    url('/fonts/poppins/Poppins-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Poppins-semiBold';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/poppins/Poppins-SemiBold.woff2') format('woff2'),
+    url('/fonts/poppins/Poppins-SemiBold.woff') format('woff');
 }
 @font-face {
   font-family: 'Grotesk-Medium';
@@ -37,13 +65,15 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --primary-color: #063dcc;
+  --primary-color: #221e20;
   --secondary-color: #fffeee;
+  --accent-color: #ff3131;
   --spacing-large: 20px;
-  --regular-font: 'Grotesk';
-  --medium-font: 'Grotesk-Medium';
-  --semi-bold-font: 'Grotesk-SemiBold';
-  --thin-font: 'Grotesk-Light';
+  --regular-font: 'Poppins-Regular';
+  --medium-font: 'Poppins-medium';
+  --semi-bold-font: 'Poppins-semiBold';
+  --bold-font: 'Poppins-bold';
+  --thin-font: 'Poppins-light';
   --text-size: 0.95rem;
 }
 
@@ -74,12 +104,57 @@ body {
 .stroke-width-1 {
   stroke-width: 1;
 }
-
+/*Menu*/
 .sticky {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   width: 100vw;
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box; /* Pour s'assurer que les marges ne sont pas ajoutées à la largeur */
+  background: #fffeee;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+/*Text contours*/
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--accent-color); /* Contour noir */
+}
+.text-outline-primary {
+  color: var(--primary-color);
+  -webkit-text-stroke: 0.5px var(--secondary-color); /* Contour noir */
+}
+.text-outline-secondary {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--primary-color); /* Contour noir */
+}
+/*Dot slick carousel*/
+.slick-prev:before,
+.slick-next:before {
+  display: none !important;
+}
+.slick-dots li button:before {
+  font-size: 6px;
+  position: absolute;
+  width: 8px !important;
+  height: 8px !important;
+  opacity: 1 !important;
+  color: transparent !important;
+  border: 1px solid var(--primary-color);
+  border-radius: 150px;
+}
+
+.slick-dots li.slick-active button:before {
+  background: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  width: 8px !important;
+  height: 8px !important;
+}
+/*hover arrow btn*/
+.stroke-accent {
+  stroke: var(--accent-color);
+}
+strong {
+  font-weight: 900;
 }

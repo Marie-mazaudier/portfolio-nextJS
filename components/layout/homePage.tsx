@@ -3,82 +3,27 @@
 import BioSection from "@/components/organisms/Bio/BioSection";
 import Portfolio from "@/components/organisms/Portfolio/Portfolio";
 import Contact from "@/components/organisms/Contact/Contact";
+import BackgroundSection from "@/components/atoms/parallax/background-parralax";
+import { Stacks } from "../organisms/Stacks/Stacks";
+import { HomePageProps } from "@/app/lib/graphQL/types/homePageProps";
+import { text } from "body-parser";
 
-// Interface pour homeData
-interface HomeData {
-  main_title: string;
-  bio: { type: string; children: { type: string; text: string }[] }[];
-  tags: { id: number; text: string }[];
-  button: { text: string; link: string };
-  contact_photo: {
-    data: {
-      attributes: {
-        url: string;
-        alternativeText?: string;
-        width: number;
-        height: number;
-        name?: string;
-      };
-    };
-  };
-  logo_contact: {
-    data: {
-      attributes: {
-        url: string;
-        alternativeText?: string;
-        width: number;
-        height: number;
-      };
-    };
-  };
-  logo: { data: { attributes: { url: string } } };
-  projects_title: string;
-  contact_title: string;
-}
+const HomePage: React.FC<HomePageProps> = ({
+  homeData,
+  projectsData,
+  skillsData,
+  globalData,
+}) => {
+  // console.log("globalData", globalData);
 
-// Interface pour projectsData
-interface ProjectAttributes {
-  title: string;
-  description: string;
-  stacks: { id: number; text: string }[];
-  button: { text: string; link: string };
-  featured_image: {
-    data: {
-      id: string;
-      attributes: {
-        url: string;
-        width: number;
-        height: number;
-        alternativeText: string | null;
-      };
-    };
-  };
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-}
-
-interface ProjectsData {
-  id: string;
-  attributes: ProjectAttributes;
-}
-
-// Interface pour HomePageProps
-interface HomePageProps {
-  homeData: HomeData;
-  projectsData: ProjectsData[];
-}
-
-const HomePage: React.FC<HomePageProps> = ({ homeData, projectsData }) => {
-  //  console.log("homedata", homeData);
-
-  // Sécurisation des données
   const logoUrl = homeData.logo.data.attributes.url || "";
   const logoContactUrl = homeData.logo_contact.data.attributes?.url || "";
   const contactPhotoUrl = homeData.contact_photo.data.attributes?.url || "";
-  console.log("projectsData", projectsData);
+  const githubUrl = globalData.github.link || "";
+  const linkedinUrl = globalData.linkedin.link || "";
 
-  // Préparation des données pour BioSection
+  // console.log("homeData", homeData.tags);
+
   const bioSectionData = {
     mainTitle: homeData.main_title,
     bio: homeData.bio,
@@ -87,19 +32,27 @@ const HomePage: React.FC<HomePageProps> = ({ homeData, projectsData }) => {
     buttonLink: homeData.button.link,
     imageUrl: logoUrl, // Sécurisé
   };
-
-  // Préparation des données pour ContactSection
   const contactSectionData = {
     logo_contact: logoContactUrl, // Sécurisé
     contact_photo: contactPhotoUrl, // Sécurisé
     contactTitle: homeData.contact_title,
+    text_contact: homeData.text_contact,
   };
-
+  // Dynamically create listItems from homeData.tags
+  const listItems = homeData.tags.map((tag: { text: string }) => ({
+    listItem: tag.text,
+  }));
   return (
     <div>
       <BioSection {...bioSectionData} />
-      <Portfolio projects={projectsData} />
-      <Contact {...contactSectionData} />
+      <Stacks skills={skillsData} />
+      <Portfolio projects={projectsData} listItems={listItems} />
+      {/* Ajout de la prop `list` */}
+      <Contact
+        linkkedinLink={linkedinUrl}
+        githubLink={githubUrl}
+        {...contactSectionData}
+      />
     </div>
   );
 };

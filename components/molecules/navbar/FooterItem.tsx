@@ -10,7 +10,7 @@ interface FooterItemProps {
 const FooterItem: React.FC<FooterItemProps> = ({ text, link }) => (
   <div className="box-border  relative shrink-0 my-auto h-auto uppercase font-regular text-primary">
     <a href={link}>
-      <BodyText size="md">{text}</BodyText>
+      <BodyText size="xs">{text}</BodyText>
     </a>
   </div>
 );

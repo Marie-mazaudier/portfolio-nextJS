@@ -1,27 +1,30 @@
-'use client'; // Spécifie que ce fichier est un Client Component
+'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-// Créer le contexte
+// Création du contexte
 const CsrfContext = createContext<{ csrfToken: string | null }>({
   csrfToken: null,
 });
 
-// Fournisseur de contexte pour encapsuler l'application (uniquement côté client)
+// Fournisseur du contexte pour encapsuler l'application côté client
 export const CsrfProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [csrfToken, setCsrfToken] = useState<string | null>(null);
 
-  // Récupérer le CSRF token quand le composant est monté
+  // Récupérer le token CSRF lors du montage du composant
   useEffect(() => {
     const fetchCsrfToken = async () => {
       try {
-        const response = await axios.get('/api/csrf-token'); // Supposons que cette route retourne le token
+        const response = await axios.get('/api/csrf-token', {
+          withCredentials: true, // Permet de récupérer le cookie
+        });
         setCsrfToken(response.data.csrfToken);
+        console.log('Token CSRF récupéré :', response.data.csrfToken);
       } catch (error) {
-        console.error('Failed to fetch CSRF token:', error);
+        console.error('Erreur lors de la récupération du token CSRF :', error);
       }
     };
 
