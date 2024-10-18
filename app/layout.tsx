@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { Suspense, ReactElement } from 'react';
 import './globals.css';
 import Footer from '@/components/organisms/Footer/Footer';
 import Header from '@/components/organisms/header/header';
@@ -80,15 +80,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='fr'>
       <body className='overflow-x-hidden relative'>
-        <ClientWrapper>
-          <CsrfProvider>
-            <Header globalData={globalData} menu={menu} />
-            {React.isValidElement(children)
-              ? React.cloneElement(children, { globalData })
-              : children}
-            <Footer globalData={globalData} />
-          </CsrfProvider>
-        </ClientWrapper>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ClientWrapper>
+            <CsrfProvider>
+              <Header globalData={globalData} menu={menu} />
+              {React.isValidElement(children)
+                ? React.cloneElement(children, { globalData })
+                : children}
+              <Footer globalData={globalData} />
+            </CsrfProvider>
+          </ClientWrapper>
+        </Suspense>
       </body>
     </html>
   );
