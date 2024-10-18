@@ -33,7 +33,7 @@ module.exports = {
         nav: ["1rem", "1.75rem"],
         item: ["1.2rem", "1.5rem"],
         med: ["1.7rem", "1.2em"],
-        lg: ["2rem", "1.5em"],
+        lg: ["2.2rem", "1.5em"],
         xl: ["2.5vw", "2rem"],
         xxl: ["4.3vw", "1.2em"],
         xxxl: ["8.3vw", "1.2em"],

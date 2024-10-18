@@ -44,7 +44,7 @@ const Contact: React.FC<ContactProps> = ({
   ];
   const webpImageUrl = contact_photo.replace("/upload/", "/upload/f_webp/");
   return (
-    <section className="relative box-border bg-secondary flex  flex-col grow shrink-0 self-stretch p-5 mx-auto w-full max-w-[1920px] min-h-[auto]">
+    <section className="relative box-border bg-secondary flex  flex-col grow shrink-0 self-stretch p-1 mx-auto w-full max-w-[1920px] min-h-[auto]">
       <div
         id="contact"
         ref={elementRef}

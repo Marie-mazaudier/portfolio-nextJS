@@ -54,7 +54,7 @@ lg:before:bg-[50%_43%] before:bg-[50%_80%]  bg-blend-overlaybox-border relative 
         className="absolute right-[-165px] lg:right-[-155px] z-50 top-[25%] md:top-[30%] lg:top-[30%] "
         fill="var(--accent-color)"
       />
-      <div className="z-[99] flex flex-row justify-between w-[120px] items-center -rotate-90 absolute right-[-60px] lg:right-[-20px] bottom-20">
+      <div className="z-[99] flex flex-row justify-between w-[120px] items-center -rotate-90 absolute right-[-85px] lg:right-[-20px] bottom-20">
         <hr className="box-border relative border-t-solid border-1 mx-2 border-t-1 border-primary  w-full" />
         <a
           onClick={(e) => {
@@ -71,7 +71,7 @@ lg:before:bg-[50%_43%] before:bg-[50%_80%]  bg-blend-overlaybox-border relative 
         ref={headingRef}
         className="opacity-0 fade-in pt-36 box-border flex relative flex-col justify-center grow shrink-0 self-stretch  w-full max-w-[1200px] ">
         <div className="box-border flex gap-10 relative flex-col lg:flex-row shrink-0  h-auto">
-          <div className="box-border flex relative flex-col shrink-0 my-auto w-full lg:w-[70%] h-full">
+          <div className="box-border flex relative flex-col shrink-0 my-auto w-full lg:w-[69%] h-full">
             <Heading1 className="text-accent flex flex-col lg:pr-20">
               {mainTitle.split(" ").slice(0, -2).join(" ")}{" "}
               {/* Partie sans les deux derniers mots */}
