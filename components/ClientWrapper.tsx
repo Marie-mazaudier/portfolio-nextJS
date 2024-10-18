@@ -23,17 +23,20 @@ const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
 const ClientWrapper = ({ children }: ApolloClientWrapperProps) => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams(); // Toujours appeler le hook ici
 
   useEffect(() => {
-    const url = `${pathname}${
-      searchParams?.toString() ? `?${searchParams.toString()}` : ""
-    }`;
+    // Gérer l'utilisation conditionnelle ici, après avoir appelé les hooks
+    if (pathname === "/") {
+      const url = `${pathname}${
+        searchParams?.toString() ? `?${searchParams.toString()}` : ""
+      }`;
 
-    if (window.gtag) {
-      window.gtag("config", GA_TRACKING_ID, {
-        page_path: url,
-      });
+      if (window.gtag) {
+        window.gtag("config", GA_TRACKING_ID, {
+          page_path: url,
+        });
+      }
     }
   }, [pathname, searchParams]);
 
