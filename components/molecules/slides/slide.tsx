@@ -102,6 +102,7 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
   const [arrowSize, setArrowSize] = React.useState(arrowSizeMobile);
   const [arrowPosition, setArrowPosition] = React.useState(arrowPositionMobile);
   const [arrowColor, setArrowColor] = React.useState(arrowColorMobile);
+  const [isAutoplayEnabled, setIsAutoplayEnabled] = React.useState(autoplay);
 
   React.useEffect(() => {
     const handleResize = () => {
@@ -110,14 +111,17 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
         setArrowSize(arrowSizeMobile); // Appliquer la taille des flèches pour mobile
         setArrowPosition(arrowPositionMobile); // Appliquer la position des flèches pour mobile
         setArrowColor(arrowColorMobile); // Appliquer la couleur des flèches pour mobile
+        setIsAutoplayEnabled(false); // Désactiver l'autoplay sur mobile
       } else if (screenWidth >= 640 && screenWidth < 1024) {
         setArrowSize(arrowSizeTablet); // Appliquer la taille des flèches pour tablette
         setArrowPosition(arrowPositionTablet); // Appliquer la position des flèches pour tablette
         setArrowColor(arrowColorTablet); // Appliquer la couleur des flèches pour tablette
+        setIsAutoplayEnabled(false); // Désactiver l'autoplay sur tablette
       } else {
         setArrowSize("80px"); // Taille par défaut (par exemple pour desktop)
         setArrowPosition({ left: "-10%", right: "-4%", top: "50%" }); // Position par défaut pour desktop
         setArrowColor("#000"); // Couleur par défaut (par exemple pour desktop)
+        setIsAutoplayEnabled(autoplay); // Activer ou désactiver l'autoplay en fonction de la prop pour desktop
       }
     };
 
@@ -134,6 +138,7 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
     arrowPositionTablet,
     arrowColorMobile,
     arrowColorTablet,
+    autoplay, // Inclure autoplay dans les dépendances pour la version desktop
   ]);
 
   const settings = {
@@ -164,7 +169,7 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
         onMouseLeave={() => sliderRef.current.slickPlay()} // Redémarre l'autoplay lorsque la souris quitte
       />
     ),
-    autoplay, // Définir si l'autoplay est activé ou non
+    autoplay: isAutoplayEnabled, // Utiliser l'état pour activer/désactiver l'autoplay
     autoplaySpeed: 2500, // Vitesse de défilement automatique (2500ms)
     pauseOnHover: true, // Met en pause l'autoplay au survol du slider
   };

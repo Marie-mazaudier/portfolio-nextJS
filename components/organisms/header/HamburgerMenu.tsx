@@ -55,7 +55,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
           aria-label="Close menu">
           <Close width="30px" height="30px" className="text-primary" />
         </button>
-        <a href="/">
+        <a className="z-50" href="/">
           <BuilderImage
             className="pb-14"
             width={105}
@@ -77,9 +77,9 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
               </a>
             </li>
           ))}
-          <li className="jusitfy-left flex flex-row">
+          <li className="jusitfy-left flex flex-row z-50">
             {/* Lien vers le GitHub */}
-            <a href={gitHubUrl}>
+            <a target="_blank" href={gitHubUrl}>
               <GitHub
                 width="30px"
                 height="30px"

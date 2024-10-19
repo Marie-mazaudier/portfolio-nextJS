@@ -12,7 +12,7 @@ module.exports = {
         "motif-bg-red": "url('/images/motif_bg-red.svg')",
         "motif-bg-red-2": "url('/images/Backgroung_motif-2.svg')",
         "motif-bg-red-3": "url('/images/Backgroung_motif-3.svg')",
-        "motif-bg-noir": "url('/images/motif-noir.png')",
+        "motif-bg-noir": "url('/images/bg-motif-noir.png')",
       },
       colors: {
         primary: "var(--primary-color)",

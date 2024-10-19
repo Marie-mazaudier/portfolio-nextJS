@@ -44,7 +44,7 @@ const Contact: React.FC<ContactProps> = ({
   ];
   const webpImageUrl = contact_photo.replace("/upload/", "/upload/f_webp/");
   return (
-    <section className="relative box-border bg-secondary flex  flex-col grow shrink-0 self-stretch p-1 mx-auto w-full max-w-[1920px] min-h-[auto]">
+    <section className="relative box-border bg-secondary flex  flex-col grow shrink-0 self-stretch p-1 lg:p-5 mx-auto w-full max-w-[1920px] min-h-[auto]">
       <div
         id="contact"
         ref={elementRef}
@@ -55,21 +55,10 @@ const Contact: React.FC<ContactProps> = ({
             <div className="box-border flex  gap-14 lg:gap-5 max-md:flex-col">
               <div className="flex flex-col lg:w-7/12 md:w-9/12 max-md:ml-0 max-md:w-full">
                 <div className="box-border flex relative flex-col shrink-0 my-auto w-auto h-auto">
-                  <div className="w-full lg:w-1/2">
-                    {/* <List
-                      lists={listItems}
-                      direction="horizontal"
-                      separator={true}
-                      separatorHeight="8px"
-                      separatorColor="white"
-                      className="text-secondary mr-auto"
-                      alignment="left"
-                      alignmentMobile="left"
-                      alignmentTablet="left"
-                      gap={15}
-                    />*/}
-                  </div>
-                  <BodyText className="text-secondary">{text_contact}</BodyText>
+                  <div className="w-full lg:w-1/2"></div>
+                  <BodyText className="text-secondary mb-5 lg:mb-0">
+                    {text_contact}
+                  </BodyText>
                   <Heading2 className="uppercase 	 box-border relative shrink-0  h-auto text-accent">
                     {contactTitle}
                   </Heading2>
@@ -82,7 +71,7 @@ const Contact: React.FC<ContactProps> = ({
               </div>
               <div className="flex flex-col lg:ml-5 lg:w-5/12 md:w-3/12 max-md:ml-0 max-md:w-full">
                 <div className="box-border flex relative flex-col shrink-0 justify-start items-start lg:pl-36 m-auto  w-full h-auto">
-                  <div className="relative mt-5 ml-[-10px] md:ml-0 md:mt-0">
+                  <div className="relative :mt-2 ml-[-10px] md:ml-0 md:mt-0">
                     <BuilderImage
                       src={logo_contact}
                       alt="Logo Contact"

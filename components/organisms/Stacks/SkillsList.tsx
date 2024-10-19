@@ -14,7 +14,7 @@ export const SkillsList: React.FC<SkillsListProps> = ({
 }) => {
   return (
     <section className="box-border my-20 flex relative flex-col shrink-0 pb-5 border-b border-white border-solid">
-      <div className="flex gap-5  overflow-x-auto whitespace-nowrap lg:justify-between max-md:flex-row">
+      <div className="flex gap-5 scrollbar-hide  overflow-x-auto whitespace-nowrap lg:justify-between max-md:flex-row">
         {skillsList.map((skill, index) => (
           <div
             key={index}
