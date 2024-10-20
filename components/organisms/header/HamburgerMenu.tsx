@@ -39,8 +39,8 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         aria-label="Open menu">
         <MenuIcon
           width="43px"
-          height="43px"
-          className="text-primary mb-3" // Applique la couleur primary au SVG entier via currentColor
+          height="41.5px"
+          className="text-primary " // Applique la couleur primary au SVG entier via currentColor
         />
       </button>
       <nav
