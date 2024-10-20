@@ -38,15 +38,15 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
         }}
         aria-label="Open menu">
         <MenuIcon
-          width="30px"
-          height="30px"
-          className="text-primary" // Applique la couleur primary au SVG entier via currentColor
+          width="43px"
+          height="43px"
+          className="text-primary mb-3" // Applique la couleur primary au SVG entier via currentColor
         />
       </button>
       <nav
         className={`box-border flex fixed top-0 left-0 flex-col justify-center shrink-0 px-14 mt-10 h-screen bg-secondary shadow-2xl transform transition-transform duration-300 ease-in-out ${
           isActive ? "translate-x-0" : "-translate-x-full"
-        } min-w-[auto] z-[100] max-lg:pb-20 max-lg:m-auto max-lg:h-screen max-sm:flex max-sm:w-screen max-sm:max-w-[100%]   before:bg-motif-bg-red-2 before:opacity-[0.055] before:bg-[length:100%] lg:before:bg-[length:80%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
+        } min-w-[auto] z-[100] max-lg:pb-20 max-lg:m-auto max-lg:h-screen max-sm:flex max-sm:w-screen max-sm:max-w-[100%]   before:bg-motif-bg-red-2 before:opacity-[0.03] before:bg-[length:100%] lg:before:bg-[length:80%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
  before:bg-[100%_102%] `}>
         {/* Bouton pour fermer le menu */}
         <button

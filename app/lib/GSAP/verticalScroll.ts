@@ -28,8 +28,8 @@ const useVerticalScroll = (
     to, // Valeurs personnalisables d'arrivée
     start = 'top 80%', // Par défaut, l'animation démarre lorsque l'élément atteint 80% de la fenêtre
     end = 'bottom 20%', // Par défaut, l'animation se termine lorsque l'élément quitte 20% de la fenêtre
-    duration = 1.5, // Durée par défaut de 1 seconde
-    scrub = 2, // Scrubbing activé par défaut
+    duration = 10, // Durée par défaut de 1 seconde
+    scrub = 7, // Scrubbing activé par défaut
   }: ScrollOptions = {}
 ) => {
   useEffect(() => {

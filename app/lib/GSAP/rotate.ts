@@ -42,7 +42,7 @@ const useRotate = ({
               // Appliquer la rotation
               gsap.to(element, {
                 rotate: rotationValue,
-                duration: 1.2, // Augmenter la durée pour une transition encore plus fluide
+                duration: 1.6, // Augmenter la durée pour une transition encore plus fluide
                 ease: 'power1.out', // Fluidité
               });
             },

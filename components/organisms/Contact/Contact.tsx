@@ -10,6 +10,7 @@ import BuilderImage from "@/components/atoms/builder-image";
 import useRotate from "@/app/lib/GSAP/rotate";
 import useFadeIn from "@/app/lib/GSAP/fadeIn";
 import List from "@/components/atoms/list/list";
+import useFadeInUp from "@/app/lib/GSAP/fadeInUpDown";
 
 interface ContactProps {
   contactTitle: string;
@@ -43,6 +44,8 @@ const Contact: React.FC<ContactProps> = ({
     { listItem: "Start-Up" },
   ];
   const webpImageUrl = contact_photo.replace("/upload/", "/upload/f_webp/");
+  useFadeInUp();
+
   return (
     <section className="relative box-border bg-secondary flex  flex-col grow shrink-0 self-stretch p-1 lg:p-5 mx-auto w-full max-w-[1920px] min-h-[auto]">
       <div
@@ -56,12 +59,16 @@ const Contact: React.FC<ContactProps> = ({
               <div className="flex flex-col lg:w-7/12 md:w-9/12 max-md:ml-0 max-md:w-full">
                 <div className="box-border flex relative flex-col shrink-0 my-auto w-auto h-auto">
                   <div className="w-full lg:w-1/2"></div>
-                  <BodyText className="text-secondary mb-5 lg:mb-0">
+
+                  <BodyText className="hidden lg:flex text-secondary mb-5 lg:mb-0">
                     {text_contact}
                   </BodyText>
                   <Heading2 className="uppercase 	 box-border relative shrink-0  h-auto text-accent">
                     {contactTitle}
                   </Heading2>
+                  <BodyText className=" lg:hidden text-secondary mt-5 lg:mb-0">
+                    {text_contact}
+                  </BodyText>
 
                   <ContactForm
                     email_admin={infoEmail.email_admin}
@@ -79,14 +86,14 @@ const Contact: React.FC<ContactProps> = ({
                       height={20}
                       className="rotate box-border  object-contain overflow-hidden shrink-0 mt-auto mr-auto mb-5 w-full aspect-[1.02] max-w-[130px] min-h-[auto] min-w-[20px] object-[bottom_left]"
                     />
-                    <BuilderImage
+                    {/* <BuilderImage
                       src={webpImageUrl}
                       alt="Contact Photo"
                       width={150} // Ajuster les valeurs si nécessaire
                       height={150}
                       className="rounded-full absolute top-[24px] left-[-3px] object-cover overflow-hidden shrink-0 mt-0 mr-auto ml-7 w-full aspect-square max-w-[79px] min-h-[20px] min-w-[20px] z-[999999999]"
                       loading="lazy"
-                    />
+                    />*/}
                   </div>
 
                   <div className="box-border flex relative flex-col shrink-0 justify-start md:pl-4 mr-auto w-full">
@@ -117,6 +124,7 @@ const Contact: React.FC<ContactProps> = ({
                       Linkedin
                     </a>
                     <a
+                      target="_blank"
                       href="https://www.codeur.com/-marie-mazaudier"
                       title="Marie-Mazaudier">
                       <img

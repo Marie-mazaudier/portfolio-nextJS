@@ -11,6 +11,7 @@ const HomePage: React.FC<HomePageProps> = ({
   projectsData,
   skillsData,
   globalData,
+  logo,
 }) => {
   // console.log("globalData", globalData);
 
@@ -28,7 +29,7 @@ const HomePage: React.FC<HomePageProps> = ({
     tags: homeData.tags,
     buttonText: homeData.button.text,
     buttonLink: homeData.button.link,
-    imageUrl: logoUrl, // Sécurisé
+    logo: logo, // Sécurisé
   };
   const contactSectionData = {
     logo_contact: logoContactUrl, // Sécurisé
@@ -40,6 +41,7 @@ const HomePage: React.FC<HomePageProps> = ({
   const listItems = homeData.tags.map((tag: { text: string }) => ({
     listItem: tag.text,
   }));
+
   return (
     <div>
       <BioSection {...bioSectionData} />

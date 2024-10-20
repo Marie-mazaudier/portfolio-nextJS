@@ -47,7 +47,7 @@ const NavItem: React.FC<NavItemProps> = ({ navItems, gitHubUrl }) => {
       ))}
       <li className="text-center">
         {/* Lien vers le GitHub */}
-        <a href={gitHubUrl}>
+        <a target="_blank" href={gitHubUrl}>
           <GitHub
             width="30px"
             height="30px"

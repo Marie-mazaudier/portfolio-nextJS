@@ -18,6 +18,8 @@ export default async function Page() {
   const projectsData = data.projects.data;
   const skillsData = data.skills.data;
   const settings = settingsData.data.siteSetting.data.attributes.header;
+  const logo = settings.logo.image.data.attributes.url;
+
   return (
     <>
       <Head>
@@ -30,6 +32,7 @@ export default async function Page() {
           homeData={homeData}
           projectsData={projectsData}
           globalData={settings}
+          logo={logo}
         />
       </main>
     </>

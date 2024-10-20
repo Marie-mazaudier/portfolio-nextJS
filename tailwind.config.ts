@@ -12,6 +12,7 @@ module.exports = {
         "motif-bg-red": "url('/images/motif_bg-red.svg')",
         "motif-bg-red-2": "url('/images/Backgroung_motif-2.svg')",
         "motif-bg-red-3": "url('/images/Backgroung_motif-3.svg')",
+        "motif-bg-red-4": "url('/images/Background_motif-4.svg')",
         "motif-bg-noir": "url('/images/bg-motif-noir.png')",
       },
       colors: {
@@ -33,7 +34,7 @@ module.exports = {
         nav: ["1rem", "1.75rem"],
         item: ["1.2rem", "1.5rem"],
         med: ["1.7rem", "1.2em"],
-        lg: ["2.2rem", "1.5em"],
+        lg: ["2.3rem", "1.5em"],
         xl: ["2.5vw", "2rem"],
         xxl: ["4.3vw", "1.2em"],
         xxxl: ["8.3vw", "1.2em"],

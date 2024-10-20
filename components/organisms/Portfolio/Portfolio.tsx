@@ -7,6 +7,7 @@ import { PortfolioProps } from "@/app/lib/graphQL/types/portfolioProps";
 import AnimatedLine from "@/app/lib/GSAP/AnimatedLine";
 import HorizontalServices from "@/components/molecules/portfolio/HorizontalServices";
 import Plus from "@/app/assets/icons/plus.svg";
+import useFadeInUp from "@/app/lib/GSAP/fadeInUpDown";
 
 const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
   const elementRef = useRef<HTMLHeadingElement>(null);
@@ -24,13 +25,13 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
   }));
 
   useFadeIn({ repeat: false });
+  useFadeInUp();
 
   return (
     <section
       id="portfolio"
-      ref={elementRef}
-      className="fade-in  box-border flex flex-col w-full shrink-0 px-5 py-20 lg:p-5 md:px-10 md:py-28  bg-secondary   before:bg-motif-bg-red-2 before:opacity-[0.055] before:bg-[length:100%] lg:before:bg-[length:80%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
-      before:bg-[100%_102%]  bg-blend-overlaybox-border relative  ">
+      className="overflow-x-hidden box-border flex flex-col w-full shrink-0 px-5 py-16 lg:p-5 md:px-10 md:py-28  bg-secondary   before:bg-motif-bg-red-2  before:opacity-[0.03] before:bg-[length:100%] lg:before:bg-[length:80%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
+      lg:before:bg-[90%_100%] before:bg-[90%_47%]  bg-blend-overlaybox-border relative  ">
       <div className="flex w-full lg:py-32">
         <div className="box-border flex relative flex-col mx-auto md:py-5 w-full md:max-w-[1200px]">
           <div className="box-border md:max-w-[1180px] flex relative flex-col-reverse lg:flex-row h-auto justify-between items-end md:mb-10 w-full ml-auto">
@@ -48,8 +49,9 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
                 className="border-t-solid border-1 mx-2 border-t-1 border-primary box-border relative w-full"
               />
             </div>
-            <Heading2 className="text-primary text-right w-full lg:max-w-[30%] 2xl:max-w-[40%] uppercase ">
-              <span className="text-outline-secondary">Mes</span>
+
+            <Heading2 className="text-accent text-right w-full lg:max-w-[30%] 2xl:max-w-[40%] uppercase ">
+              <span className="text-outline">Mes</span>
               <br /> Projets
             </Heading2>
           </div>
@@ -57,7 +59,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
           {/* Insertion du nouveau composant ici */}
           <HorizontalServices projects={projects} listItems={listItems} />
 
-          <div className="box-border flex relative flex-col shrink-0 md:pt-10 md:pb-8 h-auto">
+          <div className="box-border flex relative flex-col shrink-0 md:pt-10 md:pb-0 h-auto">
             <CustomSlide
               transition="fade"
               autoplay={true}

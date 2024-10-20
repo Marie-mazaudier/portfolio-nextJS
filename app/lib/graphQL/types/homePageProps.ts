@@ -8,4 +8,5 @@ export interface HomePageProps {
   projectsData: ProjectsData[];
   skillsData: Skill[];
   globalData?: any; // Ajouter globalData comme prop optionnelle
+  logo: string;
 }

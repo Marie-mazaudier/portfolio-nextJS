@@ -170,7 +170,7 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
       />
     ),
     autoplay: isAutoplayEnabled, // Utiliser l'état pour activer/désactiver l'autoplay
-    autoplaySpeed: 2500, // Vitesse de défilement automatique (2500ms)
+    autoplaySpeed: 3500, // Vitesse de défilement automatique (2500ms)
     pauseOnHover: true, // Met en pause l'autoplay au survol du slider
   };
 
