@@ -63,9 +63,9 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
             <CustomSlide
               transition="fade"
               autoplay={true}
-              arrowSizeMobile="40px"
+              arrowSizeMobile="65px"
               arrowSizeTablet="80px"
-              arrowPositionMobile={{ left: "2%", right: "8%", top: "25%" }}
+              arrowPositionMobile={{ left: "1%", right: "13%", top: "22%" }}
               arrowPositionTablet={{ left: "2%", right: "10%", top: "35%" }}
               arrowColorMobile="#fff"
               arrowColorTablet="#fff">
