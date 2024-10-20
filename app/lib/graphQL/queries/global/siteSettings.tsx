@@ -71,6 +71,17 @@ export const GET_SETTINGS_DATA = gql`
               }
               link
             }
+            malt {
+              link_text
+              text
+              icon {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
             id
             menu {
               link

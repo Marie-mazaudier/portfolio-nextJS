@@ -20,7 +20,7 @@ const HomePage: React.FC<HomePageProps> = ({
   const contactPhotoUrl = homeData.contact_photo.data.attributes?.url || "";
   const githubUrl = globalData.github.link || "";
   const linkedinUrl = globalData.linkedin.link || "";
-
+  const maltData = globalData.malt;
   // console.log("homeData", homeData.tags);
 
   const bioSectionData = {
@@ -51,6 +51,7 @@ const HomePage: React.FC<HomePageProps> = ({
       <Contact
         linkkedinLink={linkedinUrl}
         githubLink={githubUrl}
+        maltData={maltData}
         {...contactSectionData}
       />
     </div>

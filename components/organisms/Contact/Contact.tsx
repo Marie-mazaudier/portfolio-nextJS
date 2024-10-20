@@ -4,6 +4,7 @@ import Image from "next/image";
 import ContactForm from "@/components/molecules/Form/ContactForm";
 import { Heading2 } from "@/components/atoms/typography/headingText/Heading2";
 import Github from "@/app/assets/icons/GitHub.svg";
+import Malt from "@/app/assets/icons/malt.svg";
 import Linkedin from "@/app/assets/icons/linkedin.svg";
 import { BodyText } from "@/components/atoms/typography/bodyText/BodyText";
 import BuilderImage from "@/components/atoms/builder-image";
@@ -19,6 +20,7 @@ interface ContactProps {
   githubLink: string;
   linkkedinLink: string;
   text_contact: string;
+  maltData: any;
 }
 
 const Contact: React.FC<ContactProps> = ({
@@ -28,8 +30,8 @@ const Contact: React.FC<ContactProps> = ({
   githubLink,
   linkkedinLink,
   text_contact,
+  maltData,
 }) => {
-  console.log("linkkedinLink", linkkedinLink);
   const elementRef = useRef<HTMLHeadingElement>(null);
   useFadeIn({ repeat: false });
   useRotate({ direction: "right", repeat: true });
@@ -38,11 +40,8 @@ const Contact: React.FC<ContactProps> = ({
     email_admin: "marie.esturgie@gmail.com",
     firm_name: "Marie Esturgie",
   };
-  const listItems = [
-    { listItem: "Agence" },
-    { listItem: "PME & TPE" },
-    { listItem: "Start-Up" },
-  ];
+  const maltUrl = maltData.link_text;
+  const maltText = maltData.text;
   const webpImageUrl = contact_photo.replace("/upload/", "/upload/f_webp/");
   useFadeInUp();
 
@@ -117,7 +116,7 @@ const Contact: React.FC<ContactProps> = ({
                       rel="noreferrer"
                       className="inline-flex text-secondary">
                       <Linkedin
-                        width="33px"
+                        width="37px"
                         height="33px"
                         className="pr-2 pb-[13px]"
                         strokeWidth="1px"
@@ -125,6 +124,21 @@ const Contact: React.FC<ContactProps> = ({
                       Linkedin
                     </a>
                     <a
+                      className="inline-flex text-secondary"
+                      href={maltUrl}
+                      target="_blank"
+                      rel="noreferrer">
+                      <Malt
+                        width="37px"
+                        height="37px"
+                        className="pr-2 pb-[13px]"
+                        fill="var(--accent-color)"
+                        stroke-width="1px"
+                      />
+                      {maltText}
+                    </a>
+                    <a
+                      className="lg:mt-3"
                       target="_blank"
                       href="https://www.codeur.com/-marie-mazaudier"
                       title="Marie-Mazaudier">
