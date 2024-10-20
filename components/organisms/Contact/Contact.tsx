@@ -86,14 +86,15 @@ const Contact: React.FC<ContactProps> = ({
                       height={20}
                       className="rotate box-border  object-contain overflow-hidden shrink-0 mt-auto mr-auto mb-5 w-full aspect-[1.02] max-w-[130px] min-h-[auto] min-w-[20px] object-[bottom_left]"
                     />
-                    {/* <BuilderImage
+                    {/**/}{" "}
+                    <BuilderImage
                       src={webpImageUrl}
                       alt="Contact Photo"
                       width={150} // Ajuster les valeurs si nécessaire
                       height={150}
-                      className="rounded-full absolute top-[24px] left-[-3px] object-cover overflow-hidden shrink-0 mt-0 mr-auto ml-7 w-full aspect-square max-w-[79px] min-h-[20px] min-w-[20px] z-[999999999]"
+                      className="rounded-full absolute top-[24px] left-[-3px] object-cover object-top overflow-hidden shrink-0 mt-0 mr-auto ml-7 w-full aspect-square max-w-[79px] min-h-[20px] min-w-[20px] z-[999999999]"
                       loading="lazy"
-                    />*/}
+                    />
                   </div>
 
                   <div className="box-border flex relative flex-col shrink-0 justify-start md:pl-4 mr-auto w-full">

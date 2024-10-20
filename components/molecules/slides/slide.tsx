@@ -19,7 +19,7 @@ const PrevArrow = (props: any) => {
   } = props;
   return (
     <div
-      className={`${className} custom-prev-arrow`}
+      className={`${className} custom-prev-arrow  mix-blend-difference  lg:mix-blend-normal  `}
       style={{
         ...style,
         display: "block",
@@ -53,7 +53,7 @@ const NextArrow = (props: any) => {
   } = props;
   return (
     <div
-      className={`${className} custom-next-arrow`}
+      className={`${className} custom-next-arrow mix-blend-difference  lg:mix-blend-normal  `}
       style={{
         ...style,
         display: "block",
