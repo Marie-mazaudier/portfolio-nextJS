@@ -7,7 +7,7 @@ const h1Style = cva([""], {
     intent: {
       normal: ["font-normal", "font-textRegular"],
       medium: ["font-medium", "font-textMedium"],
-      semibold: ["font-semibold", "font-textSemibold"],
+      semibold: [" lg:font-textSemibold font-textBold"],
       bold: ["font-bold", "font-textBold"],
       fontExtrabold: ["font-extrabold", "font-textSemibold"],
     },

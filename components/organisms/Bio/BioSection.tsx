@@ -71,7 +71,7 @@ lg:before:bg-[100%_5%] before:bg-[50%_70%]  bg-blend-overlaybox-border relative 
       {/*Fin*/}
       <div
         ref={headingRef}
-        className="opacity-0 fade-in pt-36 box-border flex relative flex-col justify-center grow shrink-0 self-stretch  w-full max-w-[1200px] ">
+        className="opacity-0 fade-in lg:pt-36 box-border flex relative flex-col justify-center grow shrink-0 self-stretch  w-full max-w-[1200px] ">
         <div className="box-border flex gap-10 relative flex-col lg:flex-row shrink-0  h-auto">
           <div className="box-border flex relative flex-col shrink-0 my-auto w-full lg:w-[69%] h-full">
             <div
@@ -124,7 +124,7 @@ lg:before:bg-[100%_5%] before:bg-[50%_70%]  bg-blend-overlaybox-border relative 
             </div>
           </div>
 
-          <div className="box-border  pt-20 flex relative flex-col shrink-0 justify-center items-start h-full w-full lg:w-[35%]"></div>
+          <div className="box-border  lg:pt-20 flex relative flex-col shrink-0 justify-center items-start h-full w-full lg:w-[35%]"></div>
         </div>
       </div>
     </section>

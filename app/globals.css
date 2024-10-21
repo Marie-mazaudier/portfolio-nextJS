@@ -33,32 +33,9 @@
 @font-face {
   font-family: 'Poppins-semiBold';
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   src: url('/fonts/poppins/Poppins-SemiBold.woff2') format('woff2'),
     url('/fonts/poppins/Poppins-SemiBold.woff') format('woff');
-}
-@font-face {
-  font-family: 'Grotesk-Medium';
-  font-style: normal;
-  font-weight: 500; /* Barlow-Medium */
-  src: url('/fonts/grotesk/SpaceGrotesk-Medium.woff2') format('woff2'),
-    url('/fonts/grotesk/SpaceGrotesk-Medium.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Grotesk';
-  font-style: normal;
-  font-weight: 400; /* Barlow-Regular */
-  src: url('/fonts/grotesk/SpaceGrotesk-Regular.woff2') format('woff2'),
-    url('/fonts/grotesk/SpaceGrotesk-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Grotesk-SemiBold';
-  font-style: normal;
-  font-weight: 600; /* Barlow-SemiBold */
-  src: url('/fonts/grotesk/SpaceGrotesk-SemiBold.woff2') format('woff2'),
-    url('/fonts/grotesk/SpaceGrotesk-SemiBold.woff') format('woff');
 }
 
 :root {
@@ -86,13 +63,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--secondary-color);
 }
 
 @layer utilities {

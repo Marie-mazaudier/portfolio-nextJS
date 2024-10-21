@@ -19,7 +19,7 @@ const ProjectSlide: React.FC<SlideData> = ({
   height,
   client,
 }) => {
-  const [btnActive, setbtnActive] = useState(false);
+  const [btnActive, setbtnActive] = useState(true);
   const webpImageUrl = image.replace("/upload/", "/upload/f_webp/");
   useFadeInUp();
 

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Slider from "react-slick";
 import ChevronLeft from "@/assets/icons/fleche-left.svg";
 import ChevronRight from "@/assets/icons/fleche-right.svg";
@@ -7,19 +7,11 @@ import "slick-carousel/slick/slick-theme.css";
 
 // Flèche précédente
 const PrevArrow = (props: any) => {
-  const {
-    className,
-    style,
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
-    arrowSize,
-    arrowPosition,
-    arrowColor,
-  } = props;
+  const { className, style, onClick, arrowSize, arrowPosition, arrowColor } =
+    props;
   return (
     <div
-      className={`${className} custom-prev-arrow  mix-blend-difference  lg:mix-blend-normal  `}
+      className={`${className} custom-prev-arrow`}
       style={{
         ...style,
         display: "block",
@@ -27,13 +19,11 @@ const PrevArrow = (props: any) => {
         left: arrowPosition?.left || "-10%",
         top: arrowPosition?.top || "50%",
         transform: "translateY(-50%)",
-        zIndex: 1,
+        zIndex: 2, // Important pour rendre visible au-dessus des autres éléments
         fontSize: arrowSize || "80px",
         cursor: "pointer",
       }}
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}>
+      onClick={onClick}>
       <ChevronLeft stroke={arrowColor} strokeWidth="1px" />
     </div>
   );
@@ -41,19 +31,11 @@ const PrevArrow = (props: any) => {
 
 // Flèche suivante
 const NextArrow = (props: any) => {
-  const {
-    className,
-    style,
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
-    arrowSize,
-    arrowPosition,
-    arrowColor,
-  } = props;
+  const { className, style, onClick, arrowSize, arrowPosition, arrowColor } =
+    props;
   return (
     <div
-      className={`${className} custom-next-arrow mix-blend-difference  lg:mix-blend-normal  `}
+      className={`${className} custom-next-arrow`}
       style={{
         ...style,
         display: "block",
@@ -61,75 +43,75 @@ const NextArrow = (props: any) => {
         right: arrowPosition?.right || "-4%",
         top: arrowPosition?.top || "50%",
         transform: "translateY(-50%)",
-        zIndex: 1,
+        zIndex: 2, // Important pour rendre visible au-dessus des autres éléments
         fontSize: arrowSize || "80px",
         cursor: "pointer",
       }}
-      onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}>
+      onClick={onClick}>
       <ChevronRight stroke={arrowColor} strokeWidth="1px" />
     </div>
   );
 };
 
-interface CustomSlideProps {
-  children: React.ReactNode; // Les enfants à l'intérieur du slider
-  transition?: "fade" | "slide"; // Type de transition : 'fade' ou 'slide'
-  autoplay?: boolean; // Option pour activer/désactiver l'autoplay
-  arrowSizeMobile?: string; // Taille des flèches pour mobile
-  arrowSizeTablet?: string; // Taille des flèches pour tablette
-  arrowPositionMobile?: { left?: string; right?: string; top?: string }; // Position des flèches pour mobile
-  arrowPositionTablet?: { left?: string; right?: string; top?: string }; // Position des flèches pour tablette
-  arrowColorMobile?: string; // Couleur des flèches pour mobile
-  arrowColorTablet?: string; // Couleur des flèches pour tablette
-}
-
-const CustomSlide: React.FC<CustomSlideProps> = ({
+const CustomSlide: React.FC<any> = ({
   children,
   transition = "slide",
-  autoplay = false, // L'autoplay est désactivé par défaut
-  arrowSizeMobile = "50px", // Taille des flèches sur mobile par défaut
-  arrowSizeTablet = "70px", // Taille des flèches sur tablette par défaut
-  arrowPositionMobile = { left: "-8%", right: "-8%", top: "50%" }, // Position par défaut des flèches sur mobile
-  arrowPositionTablet = { left: "-5%", right: "-5%", top: "50%" }, // Position par défaut des flèches sur tablette
-  arrowColorMobile = "#000", // Couleur par défaut des flèches sur mobile
-  arrowColorTablet = "#000", // Couleur par défaut des flèches sur tablette
+  autoplay = false,
+  arrowSizeMobile = "50px",
+  arrowSizeTablet = "70px",
+  arrowPositionMobile = { left: "-8%", right: "-8%", top: "50%" },
+  arrowPositionTablet = { left: "-5%", right: "-5%", top: "50%" },
+  arrowColorMobile = "#000",
+  arrowColorTablet = "#000",
 }) => {
-  const sliderRef = useRef<any>(null); // Référence pour contrôler le slider
+  const sliderRef = useRef<any>(null);
+  const [sliderHeight, setSliderHeight] = useState<number | string>("auto");
 
-  // Détecter la taille de l'écran pour changer la taille, position et couleur des flèches
-  const [arrowSize, setArrowSize] = React.useState(arrowSizeMobile);
-  const [arrowPosition, setArrowPosition] = React.useState(arrowPositionMobile);
-  const [arrowColor, setArrowColor] = React.useState(arrowColorMobile);
-  const [isAutoplayEnabled, setIsAutoplayEnabled] = React.useState(autoplay);
+  // Utilisation des hooks pour gérer la taille des flèches et autres réglages
+  const [arrowSize, setArrowSize] = useState(arrowSizeMobile);
+  const [arrowPosition, setArrowPosition] = useState(arrowPositionMobile);
+  const [arrowColor, setArrowColor] = useState(arrowColorMobile);
+  const [isAutoplayEnabled, setIsAutoplayEnabled] = useState(autoplay);
 
-  React.useEffect(() => {
+  // Fonction pour ajuster dynamiquement la hauteur du slider en fonction de la diapositive active
+  const updateSliderHeight = (index: number) => {
+    const activeSlide = document.querySelector(
+      `.slick-slide[data-index="${index}"]`
+    );
+    if (activeSlide) {
+      const newHeight = activeSlide.clientHeight;
+      setSliderHeight(newHeight);
+    }
+  };
+
+  useEffect(() => {
+    // Ajustement de la taille en fonction de la largeur de l'écran
     const handleResize = () => {
       const screenWidth = window.innerWidth;
       if (screenWidth < 640) {
-        setArrowSize(arrowSizeMobile); // Appliquer la taille des flèches pour mobile
-        setArrowPosition(arrowPositionMobile); // Appliquer la position des flèches pour mobile
-        setArrowColor(arrowColorMobile); // Appliquer la couleur des flèches pour mobile
-        setIsAutoplayEnabled(false); // Désactiver l'autoplay sur mobile
+        setArrowSize(arrowSizeMobile);
+        setArrowPosition(arrowPositionMobile);
+        setArrowColor(arrowColorMobile);
+        setIsAutoplayEnabled(false);
       } else if (screenWidth >= 640 && screenWidth < 1024) {
-        setArrowSize(arrowSizeTablet); // Appliquer la taille des flèches pour tablette
-        setArrowPosition(arrowPositionTablet); // Appliquer la position des flèches pour tablette
-        setArrowColor(arrowColorTablet); // Appliquer la couleur des flèches pour tablette
-        setIsAutoplayEnabled(false); // Désactiver l'autoplay sur tablette
+        setArrowSize(arrowSizeTablet);
+        setArrowPosition(arrowPositionTablet);
+        setArrowColor(arrowColorTablet);
+        setIsAutoplayEnabled(false);
       } else {
-        setArrowSize("80px"); // Taille par défaut (par exemple pour desktop)
-        setArrowPosition({ left: "-10%", right: "-4%", top: "50%" }); // Position par défaut pour desktop
-        setArrowColor("#000"); // Couleur par défaut (par exemple pour desktop)
-        setIsAutoplayEnabled(autoplay); // Activer ou désactiver l'autoplay en fonction de la prop pour desktop
+        setArrowSize("80px");
+        setArrowPosition({ left: "-10%", right: "-4%", top: "50%" });
+        setArrowColor("#000");
+        setIsAutoplayEnabled(autoplay);
       }
     };
 
-    handleResize(); // Appliquer les bonnes valeurs au montage du composant
-    window.addEventListener("resize", handleResize); // Écoute les changements de taille
+    // Appliquer la fonction une première fois et ensuite sur chaque redimensionnement
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("resize", handleResize); // Nettoyage
+      window.removeEventListener("resize", handleResize);
     };
   }, [
     arrowSizeMobile,
@@ -138,8 +120,13 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
     arrowPositionTablet,
     arrowColorMobile,
     arrowColorTablet,
-    autoplay, // Inclure autoplay dans les dépendances pour la version desktop
+    autoplay,
   ]);
+
+  useEffect(() => {
+    // Initialiser la hauteur sur la première diapositive
+    updateSliderHeight(0);
+  }, []);
 
   const settings = {
     dots: true,
@@ -148,36 +135,50 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    fade: transition === "fade", // Appliquer l'effet de fondu si 'transition' est 'fade'
-    swipe: true, // Activation du swipe
-    touchMove: true, // Activation du mouvement par toucher
+    fade: transition === "fade",
+    swipe: true,
+    touchMove: true,
     nextArrow: (
       <NextArrow
-        arrowSize={arrowSize} // Taille de flèche personnalisée en fonction de l'écran
-        arrowPosition={arrowPosition} // Position de flèche personnalisée en fonction de l'écran
-        arrowColor={arrowColor} // Couleur de flèche en fonction de la taille d'écran
-        onMouseEnter={() => sliderRef.current.slickPause()} // Arrête l'autoplay au survol
-        onMouseLeave={() => sliderRef.current.slickPlay()} // Redémarre l'autoplay lorsque la souris quitte
+        arrowSize={arrowSize}
+        arrowPosition={arrowPosition}
+        arrowColor={arrowColor}
       />
     ),
     prevArrow: (
       <PrevArrow
-        arrowSize={arrowSize} // Taille de flèche personnalisée en fonction de l'écran
-        arrowPosition={arrowPosition} // Position de flèche personnalisée en fonction de l'écran
-        arrowColor={arrowColor} // Couleur de flèche en fonction de la taille d'écran
-        onMouseEnter={() => sliderRef.current.slickPause()} // Arrête l'autoplay au survol
-        onMouseLeave={() => sliderRef.current.slickPlay()} // Redémarre l'autoplay lorsque la souris quitte
+        arrowSize={arrowSize}
+        arrowPosition={arrowPosition}
+        arrowColor={arrowColor}
       />
     ),
-    autoplay: isAutoplayEnabled, // Utiliser l'état pour activer/désactiver l'autoplay
-    autoplaySpeed: 3500, // Vitesse de défilement automatique (2500ms)
-    pauseOnHover: true, // Met en pause l'autoplay au survol du slider
+    autoplay: isAutoplayEnabled,
+    autoplaySpeed: 3500,
+    pauseOnHover: true,
+    afterChange: (index: number) => updateSliderHeight(index), // Ajuster la hauteur après chaque changement de slide
   };
 
   return (
-    <Slider ref={sliderRef} {...settings}>
-      {children}
-    </Slider>
+    <div
+      style={{
+        position: "relative",
+        height: sliderHeight,
+        transition: "height 0.3s ease",
+      }}>
+      <Slider ref={sliderRef} {...settings}>
+        {children}
+      </Slider>
+      {/* Dots en dehors du slider si nécessaire */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          width: "100%",
+          zIndex: 2,
+        }}>
+        {/* Les dots sont générés par slick */}
+      </div>
+    </div>
   );
 };
 
