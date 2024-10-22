@@ -19,4 +19,5 @@ export interface SlideData {
   width: number;
   height: number;
   client: string;
+  site_category: string;
 }

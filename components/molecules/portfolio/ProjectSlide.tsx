@@ -18,8 +18,9 @@ const ProjectSlide: React.FC<SlideData> = ({
   width,
   height,
   client,
+  site_category,
 }) => {
-  const [btnActive, setbtnActive] = useState(true);
+  const [btnActive, setbtnActive] = useState(false);
   const webpImageUrl = image.replace("/upload/", "/upload/f_webp/");
   useFadeInUp();
 
@@ -59,14 +60,25 @@ const ProjectSlide: React.FC<SlideData> = ({
             <span className="font-textSemibold mr-1 uppercase">Client </span>
             {client}
           </BodyText>
-          <BodyText className=" text-primary  hover:text-accent transition-all duration-300 ease-in-out cursor-pointer group mt-5 ">
+          <div className="text-primary mt-3 mr-5 flex flex-col">
+            <BodyText className="font-textSemibold mr-1 uppercase">
+              Catégorie{" "}
+            </BodyText>
+            <BodyText
+              size="xs"
+              className="mt-2 border py-1 w-fit whitespace-nowrap border-accent border-solid transition-all duration-300 ease-in-out rounded-[20px] text-accent px-4">
+              {site_category}
+            </BodyText>
+          </div>
+
+          <BodyText className=" text-primary mt-4 hover:text-accent transition-all duration-300 ease-in-out cursor-pointer group lg:mt-5 ">
             <span
               onClick={() => {
                 setbtnActive(!btnActive); // Toggle l'état de btnActive
               }}
               className="font-textSemibold flex items-center uppercase flex-row">
               Technologies
-              {/*btnActive ? (
+              {btnActive ? (
                 <Minus
                   width="20px"
                   height="20px"
@@ -80,7 +92,7 @@ const ProjectSlide: React.FC<SlideData> = ({
                   className="ml-4 mb-[0.5px] border group-hover:border-accent transition-all duration-300 ease-in-out  rounded-full border-primary p-1 group-hover:stroke-accent"
                   stroke="var(--primary-color)"
                 />
-              )*/}
+              )}
             </span>
           </BodyText>
           <BodyText

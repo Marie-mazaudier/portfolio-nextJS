@@ -22,6 +22,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
     link: project.attributes.button.link,
     width: project.attributes.featured_image.data.attributes.width,
     height: project.attributes.featured_image.data.attributes.height,
+    site_category: project.attributes.site_category,
   }));
 
   useFadeIn({ repeat: false });
@@ -80,6 +81,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
                   link={project.link}
                   width={project.width}
                   height={project.height}
+                  site_category={project.site_category}
                 />
               ))}
             </CustomSlide>

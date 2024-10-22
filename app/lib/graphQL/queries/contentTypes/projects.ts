@@ -11,6 +11,7 @@ export const PROJECTS_FRAGMENT = gql`
         text
       }
       Client
+      site_category
       button {
         id
         text
