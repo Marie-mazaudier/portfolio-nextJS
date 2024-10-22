@@ -35,7 +35,7 @@ const AnimatedLine: React.FC<AnimatedLineProps> = ({
           ease: 'power2.out',
           scrollTrigger: {
             trigger: lineRef.current, // L'élément qui déclenche l'animation
-            start: 'top 80%', // Commence quand le haut de l'élément arrive à 80% de la hauteur de la fenêtre
+            start: 'top 100%', // Commence quand le haut de l'élément arrive à 80% de la hauteur de la fenêtre
             toggleActions: 'play none none none', // Joue l'animation une fois
           },
         }

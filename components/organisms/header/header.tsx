@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ logo, globalData, menu }) => {
   };
   return (
     <header className="sticky-element absolute z-10 transition duration-300 ease-in-out box-border flex flex-row justify-center grow shrink-0 p-5 md:py-8 w-full min-h-[80px]">
-      <div className="box-border justify-center flex relative flex-row shrink-0 w-full max-w-[1200px] max-lg:items-center">
+      <div className="box-border justify-center flex relative flex-row shrink-0 w-full max-w-[1200px] 2xl:max-w-[1300px] max-lg:items-center">
         <div className="box-border leading-[1em] item-center justify center flex lg:flex-row uppercase relative shrink-0 my-auto mr-auto w-6/12 lg:w-[13%] h-auto text-[1.2rem] font-textBold text-left text-primary max-sm:mt-1.5">
           {/*<Circle
             width="12px"

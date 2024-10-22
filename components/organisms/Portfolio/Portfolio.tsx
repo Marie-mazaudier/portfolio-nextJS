@@ -33,8 +33,8 @@ const Portfolio: React.FC<PortfolioProps> = ({ projects, listItems }) => {
       className="overflow-x-hidden box-border flex flex-col w-full shrink-0 px-5 py-16 lg:p-5 md:px-10 md:py-28  bg-secondary   before:bg-motif-bg-red-2  before:opacity-[0.03] before:bg-[length:100%] lg:before:bg-[length:80%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
       lg:before:bg-[90%_100%] before:bg-[90%_47%]  bg-blend-overlaybox-border relative  ">
       <div className="flex w-full lg:py-32">
-        <div className="box-border flex relative flex-col mx-auto md:py-5 w-full md:max-w-[1200px]">
-          <div className="box-border md:max-w-[1180px] flex relative flex-col-reverse lg:flex-row h-auto justify-between items-end md:mb-10 w-full ml-auto">
+        <div className="box-border flex relative flex-col mx-auto md:py-5 w-full md:max-w-[1200px] 2xl:max-w-[1300px]">
+          <div className="box-border md:max-w-[1180px] 2xl:max-w-[1280px] flex relative flex-col-reverse lg:flex-row h-auto justify-between items-end md:mb-10 w-full ml-auto">
             <div className="flex w-full lg:w-[60%] flex-row items-center">
               <Plus
                 width="60px"

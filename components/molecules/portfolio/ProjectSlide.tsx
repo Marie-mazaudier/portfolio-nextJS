@@ -24,7 +24,7 @@ const ProjectSlide: React.FC<SlideData> = ({
   useFadeInUp();
 
   return (
-    <div className="!flex flex-col lg:flex-row /shadow-[-2px_-1px_6px_rgba(0,0,0,0.05)]  border-[#ff31311a] rounded-3xl items-center gap-12 lg:gap-20 mb-7 mt-14 lg:px-7 lg:py-10 lg:bg-secondary">
+    <div className="!flex flex-col 2xl:p-20 lg:flex-row /shadow-[-2px_-1px_6px_rgba(0,0,0,0.05)]  border-[#ff31311a] rounded-3xl items-center gap-12 lg:gap-20 mb-7 mt-14 lg:px-7 lg:py-10 lg:bg-secondary">
       {/* Section Image */}
       <div className="w-full lg:w-1/2">
         <BuilderImage
@@ -66,7 +66,7 @@ const ProjectSlide: React.FC<SlideData> = ({
               }}
               className="font-textSemibold flex items-center uppercase flex-row">
               Technologies
-              {btnActive ? (
+              {/*btnActive ? (
                 <Minus
                   width="20px"
                   height="20px"
@@ -80,7 +80,7 @@ const ProjectSlide: React.FC<SlideData> = ({
                   className="ml-4 mb-[0.5px] border group-hover:border-accent transition-all duration-300 ease-in-out  rounded-full border-primary p-1 group-hover:stroke-accent"
                   stroke="var(--primary-color)"
                 />
-              )}
+              )*/}
             </span>
           </BodyText>
           <BodyText

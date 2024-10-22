@@ -13,7 +13,7 @@ export const SkillsList: React.FC<SkillsListProps> = ({
   skillsList,
 }) => {
   return (
-    <section className="box-border my-20 flex relative flex-col shrink-0 pb-5 border-b border-white border-solid">
+    <section className="box-border lg:mb-20 lg:mt-14 mb-10 mt-5 flex relative flex-col shrink-0 pb-5 border-b border-white border-solid">
       <div className="flex gap-5 scrollbar-hide  overflow-x-auto whitespace-nowrap lg:justify-between max-md:flex-row">
         {skillsList.map((skill, index) => (
           <div
@@ -23,7 +23,7 @@ export const SkillsList: React.FC<SkillsListProps> = ({
             onMouseEnter={() => setActiveSkill(skill)}>
             <BodyText
               className={`
-                box-border cursor-pointer relative shrink-0 mt-5 h-auto text-base font-black uppercase 
+                box-border cursor-default relative shrink-0 mt-5 h-auto text-base font-black uppercase 
                 transition-colors ease-in-out duration-500
                 ${activeSkill === skill ? "text-accent active" : ""}
               `}>

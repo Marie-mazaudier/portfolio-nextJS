@@ -63,11 +63,11 @@ export const Stacks: React.FC<StacksProps> = ({ skills }) => {
       ref={elementRef}
       className="overflow-x-hidden fade-in p-5 md:p-10 lg:p-5 bg-primary before:bg-motif-bg-noir before:bg-[length:cover] before:bg-no-repeat before:z-[-1] before:inset-0 before:absolute
       before:opacity-[0.7] before:bg-[-300px_0px] bg-blend-overlay box-border justify-center min-h-[90vh] lg:min-h-[110vh] flex relative flex-col grow shrink-0 self-stretch py-20">
-      <div className="flex flex-col w-full max-w-[1200px] mx-auto">
+      <div className="flex flex-col w-full max-w-[1200px] 2xl:max-w-[1300px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-5">
           {/* Colonne gauche : Titre */}
           <div className="flex flex-col w-full lg:w-1/3">
-            <Heading2 className="mt-5 text-6xl uppercase text-secondary md:text-9xl">
+            <Heading2 className=" text-6xl uppercase text-secondary md:text-9xl">
               <span className="text-outline-primary">
                 Mes{/*mainTitle.split(" ")[0]}*/}
               </span>
@@ -76,16 +76,16 @@ export const Stacks: React.FC<StacksProps> = ({ skills }) => {
           </div>
 
           {/* Colonne droite : Outils */}
-          <div className="flex flex-col ml-5 w-full lg:w-[33%] max-md:ml-0 max-md:w-full" />
+          <div className="flex flex-col  ml-5 w-full lg:w-[33%] max-md:ml-0 max-md:w-full" />
           <div className="flex flex-col lg:ml-5 w-full lg:w-[33%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-row align-middle items-center">
-              <Plus
+              {/*<Plus
                 width="60px"
                 height="60px"
                 className="ml-[-20px]"
                 strokeWidth="1px"
                 stroke="currentColor"
-              />
+              />*/}
               <hr className="box-border relative w-full" />
             </div>
             <div className="mt-8">
