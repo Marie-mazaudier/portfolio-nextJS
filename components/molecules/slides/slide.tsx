@@ -1,12 +1,25 @@
-import React, { useRef, useEffect, useState } from "react";
-import Slider from "react-slick";
+import React, { useRef, useEffect, useState, ReactNode } from "react";
+import Slider, { Settings } from "react-slick";
 import ChevronLeft from "@/assets/icons/fleche-left.svg";
 import ChevronRight from "@/assets/icons/fleche-right.svg";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+interface ArrowProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+  arrowSize?: string;
+  arrowPosition?: {
+    left?: string;
+    right?: string;
+    top?: string;
+  };
+  arrowColor?: string;
+}
+
 // Flèche précédente
-const PrevArrow = (props) => {
+const PrevArrow: React.FC<ArrowProps> = (props) => {
   const { className, style, onClick, arrowSize, arrowPosition, arrowColor } =
     props;
   return (
@@ -30,7 +43,7 @@ const PrevArrow = (props) => {
 };
 
 // Flèche suivante
-const NextArrow = (props) => {
+const NextArrow: React.FC<ArrowProps> = (props) => {
   const { className, style, onClick, arrowSize, arrowPosition, arrowColor } =
     props;
   return (
@@ -53,7 +66,27 @@ const NextArrow = (props) => {
   );
 };
 
-const CustomSlide = ({
+interface CustomSlideProps {
+  children: ReactNode;
+  transition?: "slide" | "fade";
+  autoplay?: boolean;
+  arrowSizeMobile?: string;
+  arrowSizeTablet?: string;
+  arrowPositionMobile?: {
+    left?: string;
+    right?: string;
+    top?: string;
+  };
+  arrowPositionTablet?: {
+    left?: string;
+    right?: string;
+    top?: string;
+  };
+  arrowColorMobile?: string;
+  arrowColorTablet?: string;
+}
+
+const CustomSlide: React.FC<CustomSlideProps> = ({
   children,
   transition = "slide",
   autoplay = false,
@@ -64,10 +97,10 @@ const CustomSlide = ({
   arrowColorMobile = "#000",
   arrowColorTablet = "#000",
 }) => {
-  const sliderRef = useRef(null);
-  const [sliderHeight, setSliderHeight] = useState("auto");
-  const [isMobile, setIsMobile] = useState(false); // Pour gérer le comportement sur mobile
-  const [currentSlide, setCurrentSlide] = useState(0); // Suivre la diapositive active
+  const sliderRef = useRef<Slider | null>(null);
+  const [sliderHeight, setSliderHeight] = useState<string | number>("auto");
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Utilisation des hooks pour gérer la taille des flèches et autres réglages
   const [arrowSize, setArrowSize] = useState(arrowSizeMobile);
@@ -76,8 +109,8 @@ const CustomSlide = ({
   const [isAutoplayEnabled, setIsAutoplayEnabled] = useState(autoplay);
 
   // Fonction pour ajuster dynamiquement la hauteur du slider en fonction de la diapositive active
-  const updateSliderHeight = (index) => {
-    const activeSlide = document.querySelector(
+  const updateSliderHeight = (index: number) => {
+    const activeSlide = document.querySelector<HTMLElement>(
       `.slick-slide[data-index="${index}"]`
     );
     if (activeSlide) {
@@ -87,7 +120,6 @@ const CustomSlide = ({
   };
 
   useEffect(() => {
-    // Ajustement de la taille en fonction de la largeur de l'écran et gestion du mobile
     const handleResize = () => {
       const screenWidth = window.innerWidth;
       if (screenWidth < 640) {
@@ -112,7 +144,6 @@ const CustomSlide = ({
       }
     };
 
-    // Appliquer la fonction une première fois et ensuite sur chaque redimensionnement
     handleResize();
     window.addEventListener("resize", handleResize);
 
@@ -130,12 +161,11 @@ const CustomSlide = ({
   ]);
 
   useEffect(() => {
-    // Initialiser la hauteur sur la première diapositive
     updateSliderHeight(0);
   }, []);
 
-  const settings = {
-    dots: !isMobile, // Afficher les dots par défaut sauf sur mobile
+  const settings: Settings = {
+    dots: !isMobile,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -163,12 +193,11 @@ const CustomSlide = ({
     pauseOnHover: true,
     afterChange: (index) => {
       updateSliderHeight(index);
-      setCurrentSlide(index); // Met à jour la diapositive active
+      setCurrentSlide(index);
     },
   };
 
-  // Génération des dots de manière relative à chaque slide uniquement sur mobile
-  const renderDots = (index) => {
+  const renderDots = (index: number) => {
     return (
       <div
         style={{
@@ -180,7 +209,7 @@ const CustomSlide = ({
         {React.Children.map(children, (_, dotIndex) => (
           <button
             key={dotIndex}
-            onClick={() => sliderRef.current.slickGoTo(dotIndex)}
+            onClick={() => sliderRef.current?.slickGoTo(dotIndex)}
             style={{
               width: "12px",
               height: "12px",
@@ -200,7 +229,7 @@ const CustomSlide = ({
     <div
       style={{
         height: sliderHeight,
-        overflow: isMobile ? "hidden" : "visible", // Appliquer overflow: hidden uniquement sur mobile
+        overflow: isMobile ? "hidden" : "visible",
         transition: "height 0.3s ease",
         position: "relative",
       }}>
@@ -208,8 +237,7 @@ const CustomSlide = ({
         {React.Children.map(children, (child, index) => (
           <div key={index} style={{ position: "relative" }}>
             {child}
-            {isMobile && renderDots(index)}{" "}
-            {/* Afficher les dots sous chaque slide sur mobile */}
+            {isMobile && renderDots(index)}
           </div>
         ))}
       </Slider>
