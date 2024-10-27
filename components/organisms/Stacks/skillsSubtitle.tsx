@@ -35,9 +35,9 @@ export const SkillsSubtitle: React.FC<SkillsSubtitleProps> = ({
   return (
     <section className="box-border flex relative flex-col shrink-0">
       <div className="flex gap-5 max-md:flex-col">
-        <div className="flex flex-col w-[45%] max-md:ml-0 max-md:w-full my-auto">
+        <div className="flex flex-col w-[100%] max-md:ml-0 max-md:w-full my-auto">
           <Heading3
-            className={`box-border relative shrink-0 h-auto text-4xl font-black leading-tight uppercase
+            className={`box-border relative shrink-0 h-auto font-black leading-tight 
               transition duration-700 ease-in-out
               ${
                 isFading
@@ -48,7 +48,7 @@ export const SkillsSubtitle: React.FC<SkillsSubtitleProps> = ({
             {displayedSubtitle}
           </Heading3>
         </div>
-        <div className="flex flex-col ml-5 w-[55%] max-md:ml-0 max-md:w-full">
+        {/*<div className="flex flex-col ml-5 w-[55%] max-md:ml-0 max-md:w-full">
           <div className="box-border justify-center flex relative flex-col shrink-0 my-auto h-full">
             <div className="flex flex-row align-middle items-center relative pr-20">
               <AnimatedLine
@@ -66,7 +66,7 @@ export const SkillsSubtitle: React.FC<SkillsSubtitleProps> = ({
               />
             </div>
           </div>
-        </div>
+        </div>*/}
       </div>
     </section>
   );

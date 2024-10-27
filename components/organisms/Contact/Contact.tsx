@@ -4,15 +4,16 @@ import Image from "next/image";
 import ContactForm from "@/components/molecules/Form/ContactForm";
 import { Heading2 } from "@/components/atoms/typography/headingText/Heading2";
 import Github from "@/app/assets/icons/GitHub.svg";
+import SkillLeft from "@/app/assets/icons/skills-vertical-left.svg";
+import SkillRight from "@/app/assets/icons/skills-vertical-right.svg";
 import Malt from "@/app/assets/icons/malt.svg";
 import Linkedin from "@/app/assets/icons/linkedin.svg";
 import { BodyText } from "@/components/atoms/typography/bodyText/BodyText";
 import BuilderImage from "@/components/atoms/builder-image";
 import useRotate from "@/app/lib/GSAP/rotate";
 import useFadeIn from "@/app/lib/GSAP/fadeIn";
-import List from "@/components/atoms/list/list";
 import useFadeInUp from "@/app/lib/GSAP/fadeInUpDown";
-
+import SkillsLineLeft from "@/app/assets/icons/skills-line-left.svg";
 interface ContactProps {
   contactTitle: string;
   contact_photo: string; // Correspond désormais à l'URL de la photo
@@ -50,7 +51,7 @@ const Contact: React.FC<ContactProps> = ({
       <div
         id="contact"
         ref={elementRef}
-        className="before:bg-motif-bg before:bg-[length:25%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
+        className="  before:bg-motif-bg before:bg-[length:25%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
  before:opacity-[0.03] before:bg-[0%_0%]  bg-blend-overlay fade-in box-border bg-primary flex relative flex-col shrink-0 px-5 py-10 lg:py-20 h-auto rounded-md min-h-[auto] text-primary">
         <div className="box-border flex relative flex-col grow shrink-0 self-stretch py-10 px-0 lg:py-20 mx-auto w-full h-auto rounded-md max-w-[1200px] 2xl:max-w-[1300px] min-h-[auto]">
           <div className="box-border flex relative flex-col shrink-0  my-auto">
@@ -62,9 +63,17 @@ const Contact: React.FC<ContactProps> = ({
                   <BodyText className="hidden lg:flex text-secondary mb-5 lg:mb-0">
                     {text_contact}
                   </BodyText>
-                  <Heading2 className="uppercase 	 box-border relative shrink-0  h-auto text-accent">
-                    {contactTitle}
-                  </Heading2>
+                  <div className="flex flex-row justify-between items-center">
+                    <Heading2 className=" 	 box-border relative shrink-0  h-auto text-accent">
+                      {contactTitle}
+                    </Heading2>
+                    {/*<SkillsLineLeft
+                      stroke="var(--accent-color)"
+                      className="absolute right-0"
+                      width="200px"
+                      height="200px"
+                    />*/}
+                  </div>
                   <BodyText className=" lg:hidden text-secondary mt-5 lg:mb-0">
                     {text_contact}
                   </BodyText>

@@ -25,7 +25,7 @@ const HorizontalScrollList: React.FC<PortfolioProps> = ({ listItems }) => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <div className="relative w-[100vw] left-[50%] ml-[-50vw] mt-8 lg:mt-14 overflow-hidden whitespace-nowrap">
+    <div className="relative  overflow-hidden whitespace-nowrap">
       <div ref={listContainerRef} className="flex whitespace-nowrap">
         <List
           lists={listItems}
@@ -33,63 +33,24 @@ const HorizontalScrollList: React.FC<PortfolioProps> = ({ listItems }) => {
           separator={true}
           separatorHeight="8px"
           separatorColor="red"
-          className="text-primary text-[1rem]"
+          className="text-primary mr-2 text-[0.90rem] lg:text-[0.95rem] bg-[#f9f7ea] px-4 lg:px-6 py-1 rounded-full "
           alignment="center"
           alignmentMobile="left"
           alignmentTablet="left"
-          gap={115}
-          gapMobile={50}
-          gapTablet={40}
-          fontSize="lg"
+          gap={20}
+          gapMobile={20}
+          gapTablet={20}
+          fontSize="xs"
           separatorContent={
             <CircleRed
-              width="8px"
-              height="8px"
+              width="5px"
+              height="5px"
               stroke="var(--accent-color)"
               fill="var(--accent-color)"
               className="border-accent rounded-full"
             />
           }
         />
-
-        {/* Duplication pour le défilement fluide (affiché uniquement sur desktop) */}
-        {!isMobile && (
-          <>
-            <div className="flex mx-12 flex-col justify-end">
-              <CircleRed
-                width="8px"
-                height="8px"
-                stroke="var(--accent-color)"
-                fill="var(--accent-color)"
-                className="border-accent rounded-full m-auto"
-              />
-            </div>
-            <List
-              lists={listItems}
-              direction="horizontal"
-              separator={true}
-              separatorHeight="8px"
-              separatorColor="red"
-              className=" text-primary text-[1rem]"
-              alignment="center"
-              alignmentMobile="left"
-              alignmentTablet="left"
-              gap={115}
-              gapMobile={25}
-              gapTablet={40}
-              fontSize="lg"
-              separatorContent={
-                <CircleRed
-                  width="8px"
-                  height="8px"
-                  stroke="var(--accent-color)"
-                  fill="var(--accent-color)"
-                  className="border-accent rounded-full"
-                />
-              }
-            />
-          </>
-        )}
       </div>
     </div>
   );

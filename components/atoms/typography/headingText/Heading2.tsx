@@ -15,7 +15,7 @@ const h2Style = cva([""], {
       md: ["text-md leading-text"],
       lg: ["text-lg"],
       xl: [" text-lg lg:text-xl"],
-      xxl: ["text-4xl md:text-xxxl lg:text-h2"],
+      xxl: ["text-lg md:text-xxxl lg:text-h2"],
     },
     defaultVariants: {
       size: "xxl", // Définit la taille par défaut

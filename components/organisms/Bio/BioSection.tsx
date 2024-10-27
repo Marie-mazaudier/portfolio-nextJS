@@ -8,7 +8,7 @@ import Circle from "@/app/assets/icons/circle_red.svg";
 import ArrowBtn from "@/app/assets/icons/arrow-up.svg";
 import { scrollToElementById } from "@/app/lib/utils/scrollToElement";
 import useFadeInUp from "@/app/lib/GSAP/fadeInUpDown";
-import BuilderImage from "@/components/atoms/builder-image";
+
 interface Bio {
   type: string;
   children: { type: string; text: string }[];
@@ -49,7 +49,6 @@ const BioSection: React.FC<BioSectionProps> = ({
       id="home"
       className="  before:bg-motif-bg-red-2 before:opacity-[0.03] before:bg-[length:90%]  lg:before:bg-[length:65%] before:bg-no-repeat before:z-0 before:inset-0  before:absolute
 lg:before:bg-[100%_5%] before:bg-[50%_70%]  bg-blend-overlaybox-border relative flex flex-col lg:flex-row bg-secondary justify-center w-full shrink-0 p-5 lg:p-0 min-h-[100vh]">
-      {/*Elements en position absolute*/}
       <Circle
         width="200px"
         height="200px"
@@ -78,7 +77,7 @@ lg:before:bg-[100%_5%] before:bg-[50%_70%]  bg-blend-overlaybox-border relative 
               data-direction="bottom"
               data-repeat="false"
               data-delay="0"
-              className="fade-in-direction">
+              className="fade-in-direction justify-start flex flex-row relative">
               <Heading1 className=" text-accent flex flex-col lg:pr-20">
                 {mainTitle.split(" ").slice(0, -2).join(" ")}{" "}
                 {/* Partie sans les deux derniers mots */}
@@ -87,6 +86,12 @@ lg:before:bg-[100%_5%] before:bg-[50%_70%]  bg-blend-overlaybox-border relative 
                   {/* Les deux derniers mots */}
                 </span>
               </Heading1>
+              {/*<SkillsLineLeft
+                stroke="var(--accent-color)"
+                className="absolute right-44"
+                width="250px"
+                height="250px"
+              />*/}
             </div>
 
             <div

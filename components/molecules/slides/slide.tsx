@@ -53,7 +53,7 @@ const NextArrow: React.FC<ArrowProps> = (props) => {
         ...style,
         display: "block",
         position: "absolute",
-        right: arrowPosition?.right || "-4%",
+        right: arrowPosition?.right || "-10%",
         top: arrowPosition?.top || "50%",
         transform: "translateY(-50%)",
         zIndex: 3,
@@ -92,8 +92,8 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
   autoplay = false,
   arrowSizeMobile = "50px",
   arrowSizeTablet = "70px",
-  arrowPositionMobile = { left: "-8%", right: "-8%", top: "50%" },
-  arrowPositionTablet = { left: "-5%", right: "-5%", top: "50%" },
+  arrowPositionMobile,
+  arrowPositionTablet,
   arrowColorMobile = "#000",
   arrowColorTablet = "#000",
 }) => {
@@ -102,13 +102,11 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Utilisation des hooks pour gérer la taille des flèches et autres réglages
   const [arrowSize, setArrowSize] = useState(arrowSizeMobile);
-  const [arrowPosition, setArrowPosition] = useState(arrowPositionMobile);
+  const [arrowPosition, setArrowPosition] = useState({});
   const [arrowColor, setArrowColor] = useState(arrowColorMobile);
   const [isAutoplayEnabled, setIsAutoplayEnabled] = useState(autoplay);
 
-  // Fonction pour ajuster dynamiquement la hauteur du slider en fonction de la diapositive active
   const updateSliderHeight = (index: number) => {
     const activeSlide = document.querySelector<HTMLElement>(
       `.slick-slide[data-index="${index}"]`
@@ -125,14 +123,18 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
       if (screenWidth < 640) {
         setIsMobile(true);
         setArrowSize(arrowSizeMobile);
-        setArrowPosition(arrowPositionMobile);
+        setArrowPosition(
+          arrowPositionMobile || { left: "0%", right: "0%", top: "95%" }
+        );
         setArrowColor(arrowColorMobile);
         setIsAutoplayEnabled(false);
       } else {
         setIsMobile(false);
         if (screenWidth >= 640 && screenWidth < 1024) {
           setArrowSize(arrowSizeTablet);
-          setArrowPosition(arrowPositionTablet);
+          setArrowPosition(
+            arrowPositionTablet || { left: "-5%", right: "-5%", top: "35%" }
+          );
           setArrowColor(arrowColorTablet);
           setIsAutoplayEnabled(false);
         } else {
@@ -160,34 +162,16 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
     autoplay,
   ]);
 
-  useEffect(() => {
-    updateSliderHeight(0);
-  }, []);
-
   const settings: Settings = {
     dots: !isMobile,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: !isMobile, // Désactiver les flèches de react-slick sur mobile
     fade: transition === "fade",
     swipe: true,
     touchMove: true,
-    nextArrow: (
-      <NextArrow
-        arrowSize={arrowSize}
-        arrowPosition={arrowPosition}
-        arrowColor={arrowColor}
-      />
-    ),
-    prevArrow: (
-      <PrevArrow
-        arrowSize={arrowSize}
-        arrowPosition={arrowPosition}
-        arrowColor={arrowColor}
-      />
-    ),
     autoplay: isAutoplayEnabled,
     autoplaySpeed: 3500,
     pauseOnHover: true,
@@ -197,30 +181,41 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
     },
   };
 
-  const renderDots = (index: number) => {
+  const renderDotsWithArrows = () => {
     return (
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "10px",
-          position: "relative",
-          zIndex: 3,
-        }}>
-        {React.Children.map(children, (_, dotIndex) => (
-          <button
-            key={dotIndex}
-            onClick={() => sliderRef.current?.slickGoTo(dotIndex)}
-            style={{
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              backgroundColor: currentSlide === dotIndex ? "#000" : "#ccc",
-              margin: "0 5px",
-              border: "none",
-              cursor: "pointer",
-            }}
-          />
-        ))}
+      <div className="flex items-center justify-center relative z-3 mt-20 mb-7 ">
+        <PrevArrow
+          onClick={() => sliderRef.current?.slickPrev()}
+          arrowSize={arrowSize}
+          arrowPosition={arrowPosition}
+          arrowColor={arrowColor}
+        />
+        <div className="mx-4 flex">
+          {React.Children.map(children, (_, dotIndex) => (
+            <button
+              key={dotIndex}
+              onClick={() => sliderRef.current?.slickGoTo(dotIndex)}
+              style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                backgroundColor:
+                  currentSlide === dotIndex
+                    ? "var(--accent-color)"
+                    : "var(--secondary-color)",
+                margin: "0 5px",
+                border: "1px solid var(--accent-color)",
+                cursor: "pointer",
+              }}
+            />
+          ))}
+        </div>
+        <NextArrow
+          onClick={() => sliderRef.current?.slickNext()}
+          arrowSize={arrowSize}
+          arrowPosition={arrowPosition}
+          arrowColor={arrowColor}
+        />
       </div>
     );
   };
@@ -229,7 +224,6 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
     <div
       style={{
         height: sliderHeight,
-        overflow: isMobile ? "hidden" : "visible",
         transition: "height 0.3s ease",
         position: "relative",
       }}>
@@ -237,7 +231,7 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
         {React.Children.map(children, (child, index) => (
           <div key={index} style={{ position: "relative" }}>
             {child}
-            {isMobile && renderDots(index)}
+            {isMobile && renderDotsWithArrows()}
           </div>
         ))}
       </Slider>

@@ -129,13 +129,23 @@ body {
 strong {
   font-weight: 900;
 }
-
-/* scrollbar list compétences */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+/*trackbar skills mobiles/*
+/* Styles pour la scrollbar */
+.skills-wrapper::-webkit-scrollbar {
+  height: 4px; /* Définir la hauteur de la barre de défilement */
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
+.skills-wrapper::-webkit-scrollbar-track {
+  background-color: #2d2d2d; /* gray-800 */
+}
+
+.skills-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-color); /* Couleur accent personnalisée */
+  border-radius: 4px; /* Ajouter un arrondi pour un meilleur design */
+}
+
+.skills-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: var(
+    --accent-color-hover
+  ); /* Optionnel : couleur différente au survol */
 }

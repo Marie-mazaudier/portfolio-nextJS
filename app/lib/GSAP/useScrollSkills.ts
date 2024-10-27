@@ -1,54 +1,61 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
-// Activer le plugin ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
 interface UseScrollSkillsProps {
   skillsList: string[];
   setActiveSkill: (skill: string) => void;
+  setScrollPosition: (position: number) => void;
+  isActive: boolean; // Nouvelle prop pour activer/désactiver le comportement
 }
 
 const useScrollSkills = ({
   skillsList,
   setActiveSkill,
+  setScrollPosition,
+  isActive,
 }: UseScrollSkillsProps) => {
   useEffect(() => {
-    // Vérifier si la liste des compétences est vide
-    if (skillsList.length === 0) return;
+    if (!isActive) return; // Ne rien faire si le comportement n'est pas actif
 
-    // Créer une animation qui se déclenche au défilement
-    const triggerAnimation = gsap.timeline({
+    const totalSkills = skillsList.length;
+    const sectionScrollAmount = 100 / (totalSkills - 1);
+
+    const timeline = gsap.timeline({
       scrollTrigger: {
-        trigger: '.skills-list', // L'élément déclencheur
-        start: 'top -50%',
-        end: 'bottom 80%', // Réduire l'espace de scroll pour plus de rapidité
-        scrub: 0.5, // Rendre l'animation plus fluide mais plus rapide
+        trigger: '.skills-wrapper',
+        start: 'center center',
+        end: `+=${totalSkills * 500}`,
+        pin: true,
+        pinSpacing: true,
+        scrub: true,
+        markers: false,
+        onUpdate: self => {
+          const progress = self.progress * 100;
+          setScrollPosition(progress);
+          const dotIndex = Math.round(progress / sectionScrollAmount);
+          if (dotIndex >= 0 && dotIndex < totalSkills) {
+            setActiveSkill(skillsList[dotIndex]);
+          }
+        },
       },
     });
 
-    // Créer une animation pour chaque compétence
-    skillsList.forEach((skill, index) => {
-      triggerAnimation.to(
-        {},
-        {
-          duration: 0.05, // Ajuster la durée pour chaque compétence
-          onStart: () => setActiveSkill(skill),
-        },
-        index * 0.05
-      ); // Décaler légèrement chaque compétence pour plus de fluidité
+    skillsList.forEach((_, index) => {
+      const progressPosition = (index / (totalSkills - 1)) * 100;
+      timeline.to('.progress-bar-fill', {
+        width: `${progressPosition}%`,
+        duration: 0.25,
+        ease: 'power1.out',
+      });
     });
 
-    // Forcer GSAP à recalculer les dimensions après le montage
-    ScrollTrigger.refresh();
-
-    // Nettoyer les ScrollTriggers lors du démontage du composant
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-      ScrollTrigger.refresh(); // Assurer une mise à jour propre après le nettoyage
     };
-  }, [skillsList, setActiveSkill]);
+  }, [skillsList, setActiveSkill, setScrollPosition, isActive]);
 };
 
 export default useScrollSkills;

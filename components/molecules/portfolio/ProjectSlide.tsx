@@ -25,13 +25,13 @@ const ProjectSlide: React.FC<SlideData> = ({
   useFadeInUp();
 
   return (
-    <div className="!flex flex-col 2xl:p-20 lg:flex-row /shadow-[-2px_-1px_6px_rgba(0,0,0,0.05)]  border-[#ff31311a] rounded-3xl items-center gap-12 lg:gap-20 mb-7 mt-14 lg:px-7 lg:py-10 lg:bg-secondary">
+    <div className="!flex flex-col 2xl:p-20 lg:flex-row /shadow-[-2px_-1px_6px_rgba(0,0,0,0.05)]  rounded-3xl items-center gap-12 lg:gap-20 my-7  lg:p-10 lg:bg-[#f9f7e9]">
       {/* Section Image */}
       <div className="w-full lg:w-1/2">
         <BuilderImage
           src={webpImageUrl}
           alt={title}
-          className="rounded-lg md:h-[75vh] 2xl:h-[60vh] shadow-lg w-full object-cover"
+          className="rounded-md md:h-[75vh] 2xl:h-[60vh] shadow-lg w-full object-cover"
           width={width}
           height={height}
           loading="lazy"
@@ -52,7 +52,7 @@ const ProjectSlide: React.FC<SlideData> = ({
           data-repeat="false"
           className="fade-in-direction">
           <RichText
-            className=" text-primary mt-10 lg:mt-16 lg:min-h-16"
+            className=" text-primary  mt-10 lg:mt-16 lg:min-h-16"
             content={description_project}
           />
 
@@ -60,18 +60,13 @@ const ProjectSlide: React.FC<SlideData> = ({
             <span className="font-textSemibold mr-1 uppercase">Client </span>
             {client}
           </BodyText>
-          <div className="text-primary mt-3 mr-5 flex flex-col">
-            <BodyText className="font-textSemibold mr-1 uppercase">
-              Catégorie{" "}
-            </BodyText>
-            <BodyText
-              size="xs"
-              className="mt-2 border py-1 w-fit whitespace-nowrap border-accent border-solid transition-all duration-300 ease-in-out rounded-[20px] text-accent px-4">
+          <div className="text-primary mt-3 mr-5 flex flex-row">
+            <BodyText className="border my-3 py-1 w-fit whitespace-nowrap border-accent border-solid transition-all duration-300 ease-in-out rounded-[20px] text-accent px-4">
               {site_category}
             </BodyText>
           </div>
 
-          <BodyText className=" text-primary mt-4 hover:text-accent transition-all duration-300 ease-in-out cursor-pointer group lg:mt-5 ">
+          {/*<BodyText className=" text-primary mt-4 hover:text-accent transition-all duration-300 ease-in-out cursor-pointer group lg:mt-5 ">
             <span
               onClick={() => {
                 setbtnActive(!btnActive); // Toggle l'état de btnActive
@@ -110,7 +105,7 @@ const ProjectSlide: React.FC<SlideData> = ({
               </span>
             ))}
           </BodyText>
-
+          */}
           {/* Section bouton */}
           <div
             className={`${

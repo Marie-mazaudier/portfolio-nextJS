@@ -3,34 +3,48 @@ import { BodyText } from "@/components/atoms/typography/bodyText/BodyText";
 
 interface SkillsListProps {
   activeSkill: string;
-  setActiveSkill: (skill: string) => void;
-  skillsList: string[]; // Liste des compétences dynamiques
+  skillsList: string[];
+  scrollPosition: number; // Position de progression transmise depuis Stacks
 }
 
 export const SkillsList: React.FC<SkillsListProps> = ({
   activeSkill,
-  setActiveSkill,
   skillsList,
+  scrollPosition,
 }) => {
   return (
-    <section className="box-border lg:mb-20 lg:mt-14 mb-10 mt-5 flex relative flex-col shrink-0 pb-5 border-b border-white border-solid">
-      <div className="flex gap-5 scrollbar-hide  overflow-x-auto whitespace-nowrap lg:justify-between max-md:flex-row">
+    <section className="skills-section flex flex-col relative pb-5">
+      <div className="skills-list flex gap-5 overflow-x-auto whitespace-nowrap lg:justify-between">
         {skillsList.map((skill, index) => (
-          <div
-            key={index}
-            className="flex flex-col w-auto flex-shrink-0 max-md:ml-0 max-md:w-auto"
-            onClick={() => setActiveSkill(skill)}
-            onMouseEnter={() => setActiveSkill(skill)}>
+          <div key={index} className={`skill-item flex flex-col w-auto`}>
             <BodyText
-              className={`
-                box-border cursor-default relative shrink-0 mt-5 h-auto text-base font-black uppercase 
-                transition-colors ease-in-out duration-500
-                ${activeSkill === skill ? "text-accent active" : ""}
-              `}>
+              className={`box-border cursor-pointer relative text-base font-black uppercase ${
+                activeSkill === skill ? "text-accent" : "text-secondary"
+              }`}>
               {skill}
             </BodyText>
           </div>
         ))}
+      </div>
+
+      {/* Barre de progression */}
+      <div className="relative mt-4">
+        <div className="progress-bar h-1 bg-gray-300">
+          <div
+            className="progress-bar-fill h-1 bg-accent transition-all ease-in-out duration-500"
+            style={{ width: `${scrollPosition}%` }}></div>
+        </div>
+
+        {/* Marqueurs verticaux */}
+        <div className="absolute top-[-8px] flex justify-between w-full">
+          {skillsList.map((_, index) => (
+            <div
+              key={index}
+              className={`progress-dot w-[1px] h-4 ${
+                activeSkill === skillsList[index] ? "bg-accent" : "bg-gray-300"
+              }`}></div>
+          ))}
+        </div>
       </div>
     </section>
   );
