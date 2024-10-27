@@ -13,6 +13,8 @@ interface DeskStacksProps {
   skillsList: string[];
   scrollPosition: number;
   isTechnoFading: boolean;
+  setActiveSkill: (skill: string) => void;
+  setScrollPosition: (position: number) => void;
 }
 
 const DeskStacks: React.FC<DeskStacksProps> = ({
@@ -22,16 +24,18 @@ const DeskStacks: React.FC<DeskStacksProps> = ({
   skillsList,
   scrollPosition,
   isTechnoFading,
+  setActiveSkill,
+  setScrollPosition,
 }) => {
   useFadeIn({ repeat: false });
   const elementRef = useRef<HTMLHeadingElement>(null);
 
   return (
     <>
-      <div className="flex gap-5 my-20 max-md:flex-col">
-        <div className="flex flex-col w-[60%] lg:flex-row max-md:ml-0 max-md:w-full my-auto mb-20">
-          <Heading2 className="text-6xl  text-secondary md:text-9xl">
-            <span className="text-outline-primary text-center mr-4">Mes</span>
+      <div className="flex gap-5 my-10 max-md:flex-col">
+        <div className="flex flex-col w-[60%] lg:flex-row max-md:ml-0 max-md:w-full my-auto">
+          <Heading2 className="text-6xl text-secondary md:text-9xl mb-7">
+            <span className="text-outline-primary text-center  mr-4">Mes</span>
             compétences
           </Heading2>
           <div className="box-border justify-center lg:mt-20 w-[100%] flex relative flex-col shrink-0 my-auto ">
@@ -44,36 +48,46 @@ const DeskStacks: React.FC<DeskStacksProps> = ({
           </div>
         </div>
       </div>
-      <div
-        ref={elementRef}
-        className="fade-in flex flex-col items-center lg:flex-row gap-5">
-        <div className="flex mb-8 flex-row w-full lg:w-[60%]">
-          <SkillsSubtitle
-            activeSkill={activeSkill}
-            subtitleData={subtitleData}
-          />
-        </div>
-        <div className="flex flex-col lg:ml-5 w-full lg:w-[40%] max-md:ml-0 max-md:w-full">
-          <div
-            className={`mb-8 transition-opacity duration-700 ease-in-out ${
-              isTechnoFading ? "opacity-0" : "opacity-100"
-            }`}>
-            {technoData[activeSkill] &&
-              technoData[activeSkill].map((tech, index) => (
-                <ProgressBar
-                  key={index}
-                  percent={tech.percent}
-                  text={tech.name}
-                />
-              ))}
+
+      {/* Bloc techno et sous titre */}
+      <div className="relative flex items-center w-full mb-5 min-h-[250px]">
+        <div
+          ref={elementRef}
+          className="fade-in flex w-full lg:flex-row flex-col items-center gap-5">
+          {/* Sous-titre à gauche */}
+          <div className="lg:w-[50%] w-full mb-8 lg:mb-0">
+            <SkillsSubtitle
+              activeSkill={activeSkill}
+              subtitleData={subtitleData}
+            />
+          </div>
+
+          {/* Informations technologiques à droite */}
+          <div className="lg:w-[50%] w-full flex flex-col">
+            <div
+              className={`transition-opacity duration-700 ease-in-out ${
+                isTechnoFading ? "opacity-0" : "opacity-100"
+              }`}>
+              {technoData[activeSkill] &&
+                technoData[activeSkill].map((tech, index) => (
+                  <ProgressBar
+                    key={index}
+                    percent={tech.percent}
+                    text={tech.name}
+                  />
+                ))}
+            </div>
           </div>
         </div>
       </div>
+
       <div className="lg:mb-10 lg:mt-5">
         <SkillsList
           activeSkill={activeSkill}
           skillsList={skillsList}
           scrollPosition={scrollPosition}
+          setActiveSkill={setActiveSkill}
+          setScrollPosition={setScrollPosition}
         />
       </div>
     </>

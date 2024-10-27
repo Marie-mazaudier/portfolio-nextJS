@@ -163,12 +163,26 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
   ]);
 
   const settings: Settings = {
-    dots: !isMobile,
+    dots: !isMobile, // Désactiver les dots Slick sur mobile
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: !isMobile, // Désactiver les flèches de react-slick sur mobile
+    arrows: !isMobile, // Désactiver les flèches Slick sur mobile
+    prevArrow: !isMobile ? (
+      <PrevArrow
+        arrowSize={arrowSize}
+        arrowPosition={arrowPosition}
+        arrowColor={arrowColor}
+      />
+    ) : undefined,
+    nextArrow: !isMobile ? (
+      <NextArrow
+        arrowSize={arrowSize}
+        arrowPosition={arrowPosition}
+        arrowColor={arrowColor}
+      />
+    ) : undefined,
     fade: transition === "fade",
     swipe: true,
     touchMove: true,
@@ -183,7 +197,7 @@ const CustomSlide: React.FC<CustomSlideProps> = ({
 
   const renderDotsWithArrows = () => {
     return (
-      <div className="flex items-center justify-center relative z-3 mt-20 mb-7 ">
+      <div className="flex items-center justify-center relative z-3 mt-20 mb-7">
         <PrevArrow
           onClick={() => sliderRef.current?.slickPrev()}
           arrowSize={arrowSize}

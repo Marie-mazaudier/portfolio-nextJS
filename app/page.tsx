@@ -2,7 +2,6 @@ import { GET_COMBINED_DATA } from './lib/graphQL/queries/combinedQueries';
 import HomePage from '@/components/layout/homePage';
 import client from './lib/apolloClient';
 import Head from 'next/head';
-import { SiteSetting } from './lib/graphQL/types/settingsTypes';
 import { GET_SETTINGS_DATA } from './lib/graphQL/queries/global/siteSettings';
 export const revalidate = 10; // SSG avec revalidation toutes les 10 secondes
 

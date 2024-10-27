@@ -16,6 +16,7 @@ interface ScrollOptions {
   end?: string; // Point de fin du ScrollTrigger
   duration?: number; // Durée de l'animation
   scrub?: number; // Scrubbing (l'animation suit le défilement)
+  shouldActivate?: boolean; // Activer ou désactiver le comportement du hook
 }
 
 const useVerticalScroll = (
@@ -28,11 +29,15 @@ const useVerticalScroll = (
     to, // Valeurs personnalisables d'arrivée
     start = 'top 80%', // Par défaut, l'animation démarre lorsque l'élément atteint 80% de la fenêtre
     end = 'bottom 20%', // Par défaut, l'animation se termine lorsque l'élément quitte 20% de la fenêtre
-    duration = 10, // Durée par défaut de 1 seconde
+    duration = 10, // Durée par défaut de 10 secondes
     scrub = 7, // Scrubbing activé par défaut
+    shouldActivate = true, // Par défaut, le hook est actif
   }: ScrollOptions = {}
 ) => {
   useEffect(() => {
+    // Si shouldActivate est false, ne fait rien
+    if (!shouldActivate) return;
+
     const element = ref.current;
 
     if (element) {
@@ -41,31 +46,29 @@ const useVerticalScroll = (
 
       // Logique pour définir les valeurs par défaut en fonction de la direction
       if (direction === 'vertical') {
-        // Si l'animation est inversée, part de bas en haut (100px en bas), sinon de haut en bas (-100px en haut)
         fromValue.y = from?.y ?? (reverse ? 100 : -100);
         toValue.y = to?.y ?? 0;
       } else if (direction === 'horizontal') {
-        // Si l'animation est inversée, part de droite à gauche (100px à droite), sinon de gauche à droite (-100px à gauche)
         fromValue.x = from?.x ?? (reverse ? 100 : -100);
         toValue.x = to?.x ?? 0;
       } else if (direction === 'diagonal') {
         if (diagonalDirection === 'bottom-left-to-top-right') {
           fromValue = {
-            x: from?.x ?? -100, // Part de 100px à gauche
-            y: from?.y ?? 70, // Part de 100px en bas
+            x: from?.x ?? -100,
+            y: from?.y ?? 70,
           };
           toValue = {
-            x: to?.x ?? 0, // Arrive à 0
-            y: to?.y ?? 0, // Arrive à 0
+            x: to?.x ?? 0,
+            y: to?.y ?? 0,
           };
         } else if (diagonalDirection === 'top-right-to-bottom-left') {
           fromValue = {
-            x: from?.x ?? 100, // Part de 100px à droite
-            y: from?.y ?? -70, // Part de 100px en haut
+            x: from?.x ?? 100,
+            y: from?.y ?? -70,
           };
           toValue = {
-            x: to?.x ?? 0, // Arrive à 0
-            y: to?.y ?? 0, // Arrive à 0
+            x: to?.x ?? 0,
+            y: to?.y ?? 0,
           };
         }
       }
@@ -104,6 +107,7 @@ const useVerticalScroll = (
     end,
     duration,
     scrub,
+    shouldActivate, // Ajouté pour la dépendance
   ]);
 };
 

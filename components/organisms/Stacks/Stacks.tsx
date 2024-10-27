@@ -78,7 +78,7 @@ export const Stacks: React.FC<StacksProps> = ({ skills }) => {
       id="outils"
       ref={elementRef}
       className="skills-wrapper overflow-x-hidden fade-in p-5 md:p-10 lg:p-5 bg-primary before:bg-motif-bg-noir before:bg-[length:cover] before:bg-no-repeat before:z-[-1] before:inset-0 before:absolute
-      before:opacity-[0.7] lg:before:bg-[-300px_0px] before:bg-[-220px_0px] bg-blend-overlay box-border justify-center min-h-[70vh] lg:min-h-[110vh] flex relative flex-col grow shrink-0 self-stretch lg:py-20">
+      before:opacity-[0.7] lg:before:bg-[-350px_0px] before:bg-[-220px_0px] bg-blend-overlay box-border justify-center min-h-[70vh] lg:min-h-[110vh] flex relative flex-col grow shrink-0 self-stretch lg:py-20">
       <div className="flex flex-col w-full max-w-[1200px] lg:py-24 2xl:max-w-[1300px] mx-auto">
         {isLargeScreen ? (
           <DeskStacks
@@ -88,6 +88,8 @@ export const Stacks: React.FC<StacksProps> = ({ skills }) => {
             skillsList={skillsList}
             scrollPosition={scrollPosition}
             isTechnoFading={isTechnoFading}
+            setActiveSkill={setActiveSkill}
+            setScrollPosition={setScrollPosition}
           />
         ) : (
           <ResponsiveStacks skills={skills} />

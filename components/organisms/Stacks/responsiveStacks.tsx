@@ -80,7 +80,7 @@ const ResponsiveStacks: React.FC<ResponsiveStacksProps> = ({ skills }) => {
       className="skills-wrapper  fade-in  box-border justify-center flex relative flex-col grow shrink-0 self-stretch">
       {/* Titre sur deux lignes */}
       <div className="flex flex-col items-left mb-10">
-        <Heading2 className="text-6xl uppercase text-secondary md:text-9xl text-left">
+        <Heading2 className="text-6xl  text-secondary md:text-9xl text-left">
           <span className="block text-outline-primary">Mes</span>
           <span className="block">compétences</span>
         </Heading2>
